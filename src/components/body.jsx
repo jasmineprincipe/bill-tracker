@@ -11,8 +11,57 @@ class Body extends Component{
                     <a href="#">History</a>
                 </div>
                 <div class="main">
-                    <h2>Sidenav Example</h2>
-                    <p>This sidenav is always shown.</p>
+                    <div class="current-bills-header">
+                    <p>Bills - April 2019</p>
+                    </div>
+                    <div class="current-bills-table">
+                    <table>
+                    <tr>
+                        <th>Merchant</th>
+                        <th>Serial Number</th>
+                        <th>Due Date</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td>Meralco</td>
+                        <td>324AS83</td>
+                        <td>12 Apr 2019</td>
+                        <td>3,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Globe</td>
+                        <td>124BD3</td>
+                        <td>08 Apr 2019</td>
+                        <td>3,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Manila Water</td>
+                        <td>6564BD3</td>
+                        <td>27 Apr 2019</td>
+                        <td>500.00</td>
+                    </tr>
+                    <tr>
+                        <td>Meralco</td>
+                        <td>324AS83</td>
+                        <td>12 Apr 2019</td>
+                        <td>3,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Globe</td>
+                        <td>124BD3</td>
+                        <td>08 Apr 2019</td>
+                        <td>3,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Manila Water</td>
+                        <td>6564BD3</td>
+                        <td>27 Apr 2019</td>
+                        <td>500.00</td>
+                    </tr>
+                    </table>
+                    
+                    </div>
+                        <button className="add-bill-button">ADD NEW BILL</button>
                 </div>
             </div>
         );

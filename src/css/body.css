@@ -1,36 +1,64 @@
-.body-div{
-    background-color: rgb(248, 248, 248);
-}
+
 .sidenav {
     height: 100%;
     width: 220px;
     position: absolute;
     z-index: 1;
     left: 0;
-    background-color: white;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border-right-style: solid;
-    border-right-width: 1px;
+    margin-top: -20px;
+    background-color: #17252A;
+    overflow: hidden;
+    padding-top: 10px;
+    -webkit-box-shadow:0px 1px 1px #cfcdcf;
+    -moz-box-shadow:0px 1px 1px #cfcdcf;
+    box-shadow:0px 1px 1px #cfcdcf;
 
   }
   .sidenav a {
-    padding: 6px 10px 6px 32px;
+    padding: 10px 30px 20px 24px;
     text-decoration: none;
-    font-size: 20px;
-    color: #818181;
+    font-size: 18px;
+    color:#DEF2F1;
     display: block;
+    border-left-style: solid;
+    border-left-color: #17252A;
+    border-left-width: 8px;
   }
   
   .sidenav a:hover {
-    color:cadetblue;
+    color:#FEFFFF;
+    border-left-style: solid;
+    border-left-color: #FEFFFF;
+    border-left-width: 8px;
   }
   
   .main {
-    margin-left: 230px; /* Same as the width of the sidenav */
+    margin-left: 250px; /* Same as the width of the sidenav */
+
   }
   
-  @media screen and (max-height: 450px) {
+  @media screen {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+.current-bills-header{
+    color: #2B7A78;
+    font-size: 20px;
+    height: 35px;
+    width: 591px;
+}
+
+.add-bill-button{
+    margin-right: 1000px;
+    background-color: #3AAFA9;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 420px;
+    width: 180px;
+    border-radius: 2px;
+}
+.add-bill-button:hover {opacity: 0.8}
