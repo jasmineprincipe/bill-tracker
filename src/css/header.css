@@ -1,0 +1,12 @@
+.header-div{
+    margin-top: -2%;
+    height: 50px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #818181;
+    color: cadetblue;
+    padding-top: 40px;
+    padding-left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
