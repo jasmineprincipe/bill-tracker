@@ -70,7 +70,7 @@ public class MerchantsController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addMerchant(Merchant merchant) {
-
+		
 		try {
 			merchantService.add(merchant);
 			String result = "Merchant saved : " + merchant.getMerchantName();

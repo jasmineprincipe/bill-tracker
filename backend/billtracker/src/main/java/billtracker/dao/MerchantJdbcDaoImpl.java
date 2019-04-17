@@ -48,7 +48,7 @@ public class MerchantJdbcDaoImpl implements MerchantDao {
 	}
 
 	private void createMerchantTable() {
-		String createSql = "CREATE TABLE MERCHANTS " + "(id INTEGER IDENTITY PRIMARY KEY, " + " merchant_name VARCHAR(255), "
+		String createSql = "CREATE TABLE MERCHANTS " + "(id INTEGER IDENTITY PRIMARY KEY, " + " merchant_name VARCHAR(255) UNIQUE, "
 				+ " merchant_description VARCHAR(255))";
 
 		try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
