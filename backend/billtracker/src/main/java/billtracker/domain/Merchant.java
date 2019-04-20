@@ -1,5 +1,8 @@
 package billtracker.domain;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class Merchant {
 
 	Long id;

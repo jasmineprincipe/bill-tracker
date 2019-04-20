@@ -1,12 +1,12 @@
-package billtracker.dao;
+package billtracker.service;
+
+import java.util.List;
 
 import billtracker.domain.Bill;
 import billtracker.domain.Merchant;
 
-import java.util.List;
+public interface BillService {
 
-public interface BillDao {
-	
 	public List<Bill> findAll();
 	
 	public Bill find(Long billId);
@@ -15,7 +15,7 @@ public interface BillDao {
 	
 	public void add(Bill bill);
 	
-	public void update(Bill bill);
+	public void upsert(Bill bill);
 	
 	public void delete(Long billId);
 

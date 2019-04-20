@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Bill {
-	Long id;
+	Long billId;
+	private Merchant merchantName;
 	private BigDecimal amount;
 	private String serialNumber;
 	private Date billDate;
@@ -14,12 +15,13 @@ public class Bill {
 		
 	}
 	
-	public Bill(BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
-		this(null, amount, serialNumber, billDate, dueDate);
+	public Bill(Merchant merchantName, BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
+		this(null, merchantName, amount, serialNumber, billDate, dueDate);
 	}
 
-	public Bill(Long id, BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
-		this.id = id;
+	public Bill(Long billId, Merchant merchantName, BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
+		this.billId = billId;
+		this.merchantName = merchantName;
 		this.amount = amount;
 		this.serialNumber = serialNumber;
 		this.billDate = billDate;
@@ -27,11 +29,11 @@ public class Bill {
 	}
 
 	public Long getId() {
-		return id;
+		return billId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long billId) {
+		this.billId = billId;
 	}
 
 	public BigDecimal getAmount() {
@@ -64,6 +66,14 @@ public class Bill {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public Merchant getMerchantName() {
+		return merchantName;
+	}
+
+	public void setMerchantName(Merchant merchantName) {
+		this.merchantName = merchantName;
 	}
 }
 	
