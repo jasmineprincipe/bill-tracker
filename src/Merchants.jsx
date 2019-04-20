@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Forms } from './components/forms.jsx'
 import { Tables } from './components/tables.jsx'
 import { getMerchantList } from './util/service-helper';
+import axios from 'axios';
  
 class Merchants extends Component {
 
@@ -33,7 +34,7 @@ class Merchants extends Component {
     const {name, value} = e.target;
 
     this.setState((prevState) => ({
-      user: {
+      merchant: {
         ...prevState.merchant,
         [name]: value
       }
@@ -50,6 +51,12 @@ class Merchants extends Component {
     this.setState({merchantsList : merchantsList});
 
     e.preventDefault();
+    merchant = {
+      merchantName: this.state.merchantName,
+      merchantDescription: this.state.merchantDescription,
+    }
+    axios.post('http://localhost:8080/billtracker/rest/merchants', merchant)
+    .then(res => console.log(res.data));
   }
 
   deleteMerchant = rowIndex => {
@@ -59,6 +66,9 @@ class Merchants extends Component {
     merchantsList.splice(rowIndex, 1);
 
     this.setState({merchantsList: merchantsList});
+
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/delete/{this.state.id}')
+	  .then(res => console.log(res.data));
   }
 
   render() {
