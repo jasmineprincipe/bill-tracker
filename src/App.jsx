@@ -4,58 +4,38 @@ import './css/body.css';
 import './css/tables.css';
 import './css/App.css';
 import Header from './components/header.jsx';
-import Body from './components/body.jsx';
 import {
-  getMerchantList
-} from './util/service-helper';
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
+import Home from "./Home";
+import Bills from "./Bills";
+import Merchants from "./Merchants";
+import History from "./History";
 
 class App extends Component {
-  
-  constructor(props) {  
-    super(props);
-    
-    this.state = {
-        merchantsList: [],
-        date: new Date()
-    };
-  }
-
-  // LIFE CYCLE METHODS
-  componentDidMount() {
-    this.getMerchants(); 
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  // SERVICE METHODS
-  getMerchants() {
-    getMerchantList().then(res => {
-      this.setState({merchantsList : res.data});
-    }) 
-  }
-
-  // ETC METHODS
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
   render() {
-
-    console.log('MERCHANTLIST: ');
-    console.log(this.state.merchantsList);
-
     return (
-      <div className='my-app'>
-        
-        {/* <Header date={this.state.date.toLocaleTimeString()}></Header> */}
-        
-        <Header/>
-        <Body merchantsList={this.state.merchantsList}/>
-      </div>
+        <div>
+          <Header />
+          <div className="my-app-body">
+          <HashRouter>
+            <div className="sidenav">
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/bills">Bills</NavLink>
+              <NavLink to="/merchants">Merchants</NavLink>
+              <NavLink to="/history">History</NavLink>
+            </div>
+            <div className="content">
+              <Route exact path="/" component={Home}/>
+              <Route path="/bills" component={Bills}/>
+              <Route path="/merchants" component={Merchants}/>
+              <Route path="/history" component={History}/>
+            </div>  
+          </HashRouter>
+          </div>
+        </div>
     );
   }
 }

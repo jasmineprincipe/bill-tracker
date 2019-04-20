@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Merchant from './merchant';
 import '../css/body.css';
+import '../css/merchant.css'
 
-class Body extends Component {
+class MerchantsBody extends Component {
 
     render() {
 
@@ -13,17 +13,7 @@ class Body extends Component {
         console.log(merchantsList);
 
         return (
-            <div className='body-div'>
-                
-                <div class="sidenav">
-                    <a href="#">Dashboard</a>
-                    <a href="#">Bills</a>
-                    <a href="#">Merchants</a>
-                    <a href="#">History</a>
-                </div>
-
-                <h2 className="merchants-header">Merchants</h2>
-                
+            <div className='body-div'>                
                 <div>
                         <button className="add-merchant-button">Add Merchant</button>
                 </div>
@@ -43,4 +33,4 @@ class Body extends Component {
         );
     }
 }
-export default Body;
+export default MerchantsBody;
