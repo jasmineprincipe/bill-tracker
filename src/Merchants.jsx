@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import MerchantsBody from './components/merchantsbody.jsx'
-import {
-    getMerchantList
-  } from './util/service-helper';
+import { Forms } from './components/forms.jsx'
+import { Tables } from './components/tables.jsx'
+import { getMerchantList } from './util/service-helper';
  
 class Merchants extends Component {
 
@@ -11,7 +10,6 @@ class Merchants extends Component {
     
     this.state = {
         merchantsList: [],
-        date: new Date()
     };
   }
 
@@ -29,26 +27,61 @@ class Merchants extends Component {
     getMerchantList().then(res => {
       this.setState({merchantsList : res.data});
     }) 
+  } 
+
+  handleChangeInfo = e => {
+    const {name, value} = e.target;
+
+    this.setState((prevState) => ({
+      user: {
+        ...prevState.merchant,
+        [name]: value
+      }
+    }));
   }
 
-  // ETC METHODS
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  } 
+  handleAddMerchant = e => {
+
+    let merchant = this.state.merchant;
+    let merchantsList = [...this.state.merchantsList];
+
+    merchantsList.push(merchant);
+
+    this.setState({merchantsList : merchantsList});
+
+    e.preventDefault();
+  }
+
+  deleteMerchant = rowIndex => {
+
+    let merchantsList = [...this.state.merchantsList];
+
+    merchantsList.splice(rowIndex, 1);
+
+    this.setState({merchantsList: merchantsList});
+  }
 
   render() {
 
-    /*     console.log('MERCHANTLIST: ');
-    console.log(this.state.merchantsList); */
+    console.log('MERCHANTLIST: ');
+    console.log(this.state.merchantsList);
 
     return (
       <div>
-        <h2>Merchants</h2>
-        
-        <MerchantsBody merchantsList={this.state.merchantsList}/>
+        <h1>Merchants</h1>
 
+          <div className='forms-panel'>
+            <Forms 
+              handleChangeInfo={this.handleChangeInfo} 
+              handleAddMerchant={this.handleAddMerchant} 
+            />
+          </div>
+          
+          <br/>
+
+          <div className='table-panel'>
+            <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
+          </div>
       </div>
     );
   }

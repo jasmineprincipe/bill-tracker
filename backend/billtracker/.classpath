@@ -24,7 +24,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/jasmineprincipe/Downloads/apache-tomcat-9.0.19/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/Users/jasmineprincipe/Downloads/hsqldb-2.4.1/hsqldb/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/Users/jasmineprincipe/Downloads/apache-tomcat-9.0.19/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
