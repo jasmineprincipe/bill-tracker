@@ -16,6 +16,7 @@ class Tables extends Component {
                         <th className='merchant-table-cell'>Merchant</th>
                         <th className='merchant-table-cell'>Description</th>
                         <th className='merchant-table-cell'></th>
+
                     </tr>
                     {
                         this.props.merchantsList.map((merchant, index) =>{
@@ -37,9 +38,7 @@ class Tables extends Component {
 
 Tables.propTypes = {
     deleteMerchant: PropTypes.func,
-    merchantsList: PropTypes.func,
-    merchantName: PropTypes.string,
-    merchantDescription: PropTypes.string
+    merchantsList: PropTypes.func
 }
 
 export {

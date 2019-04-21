@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Forms } from './components/forms.jsx'
 import { Tables } from './components/tables.jsx'
-import { getMerchantList } from './util/service-helper';
-import axios from 'axios';
- 
-class Merchants extends Component {
+import { getMerchantList } from './util/service-helper'
+import axios from 'axios'
 
-    constructor(props) {  
+class Merchants extends Component {
+  constructor(props) {  
     super(props);
     
     this.state = {
-        merchantsList: [],
+      merchantsList: [],
+      merchant: {
+          id: '',
+          merchantName: '',
+          merchantDescription: ''
+        }
     };
   }
 
@@ -28,7 +32,7 @@ class Merchants extends Component {
     getMerchantList().then(res => {
       this.setState({merchantsList : res.data});
     }) 
-  } 
+  }
 
   handleChangeInfo = e => {
     const {name, value} = e.target;
@@ -51,12 +55,13 @@ class Merchants extends Component {
     this.setState({merchantsList : merchantsList});
 
     e.preventDefault();
-    merchant = {
-      merchantName: this.state.merchantName,
-      merchantDescription: this.state.merchantDescription,
-    }
-    axios.post('http://localhost:8080/billtracker/rest/merchants', merchant)
-    .then(res => console.log(res.data));
+    console.log(merchantsList);
+
+    axios.post('http://localhost:8080/billtracker/rest/merchant/', { merchant })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
 
   deleteMerchant = rowIndex => {
@@ -67,8 +72,11 @@ class Merchants extends Component {
 
     this.setState({merchantsList: merchantsList});
 
-    axios.delete('http://localhost:8080/billtracker/rest/merchants/delete/{this.state.id}')
-	  .then(res => console.log(res.data));
+    axios.delete('http://localhost:8080/billtracker/rest/merchant/{this.state.id}')
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
 
   render() {
@@ -78,23 +86,24 @@ class Merchants extends Component {
 
     return (
       <div>
-        <h1>Merchants</h1>
 
-          <div className='forms-panel'>
-            <Forms 
-              handleChangeInfo={this.handleChangeInfo} 
-              handleAddMerchant={this.handleAddMerchant} 
-            />
-          </div>
-          
-          <br/>
+      <h1>Merchants</h1>
 
-          <div className='table-panel'>
-            <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
-          </div>
+      <div className='forms-panel'>
+        <Forms 
+          handleChangeInfo={this.handleChangeInfo} 
+          handleAddMerchant={this.handleAddMerchant} 
+        />
       </div>
-    );
-  }
+      
+      <br/>
+
+      <div className='table-panel'>
+        <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
+      </div>
+  </div>
+);
 }
- 
+}
+
 export default Merchants;
