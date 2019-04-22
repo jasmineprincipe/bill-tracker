@@ -35,7 +35,7 @@ public class Merchant {
 		return merchantName;
 	}
 	
-	public void setFirstName(String merchantName) {
+	public void setMerchantName(String merchantName) {
 		this.merchantName = merchantName;
 	}
 	

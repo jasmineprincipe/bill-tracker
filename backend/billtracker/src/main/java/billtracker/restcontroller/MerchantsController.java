@@ -21,6 +21,8 @@ import billtracker.domain.Merchant;
 import billtracker.service.MerchantService;
 import billtracker.service.MerchantServiceImpl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Path("/merchants")
 public class MerchantsController {
 
@@ -68,6 +70,7 @@ public class MerchantsController {
 	}
 
 	@POST
+	@JsonIgnoreProperties
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addMerchant(Merchant merchant) {
 		
@@ -82,6 +85,7 @@ public class MerchantsController {
 	}
 
 	@PUT
+	@JsonIgnoreProperties
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMerchant(Merchant merchant) {
 
@@ -96,6 +100,7 @@ public class MerchantsController {
 	}
 
 	@DELETE
+	@JsonIgnoreProperties
 	@Path("{id}")
 	public Response deleteMerchant(@PathParam("id") String id) {
 

@@ -49,15 +49,17 @@ class Merchants extends Component {
 
     let merchant = this.state.merchant;
     let merchantsList = [...this.state.merchantsList];
-
     merchantsList.push(merchant);
 
     this.setState({merchantsList : merchantsList});
 
     e.preventDefault();
-    console.log(merchantsList);
+    
+    var headers = {
+      'Content-Type': 'application/json',
+  }
 
-    axios.post('http://localhost:8080/billtracker/rest/merchant/', { merchant })
+    axios.post('http://localhost:8080/billtracker/rest/merchants/', {merchant} )
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -67,17 +69,19 @@ class Merchants extends Component {
   deleteMerchant = rowIndex => {
 
     let merchantsList = [...this.state.merchantsList];
+    let merchant = this.state.merchant;
 
     merchantsList.splice(rowIndex, 1);
 
     this.setState({merchantsList: merchantsList});
 
-    axios.delete('http://localhost:8080/billtracker/rest/merchant/{this.state.id}')
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/'+merchant.id) //mali pa to
       .then(res => {
         console.log(res);
         console.log(res.data);
       })
   }
+
 
   render() {
 
