@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { Tables } from './components/tables.jsx'
 import { getMerchantList } from './util/service-helper'
 import axios from 'axios'
 
@@ -34,22 +33,15 @@ class Merchants extends Component {
   }
 
   handleChangeInfo = e => {
-
     this.setState({ [e.target.name]: e.target.value });
   }
 
   // ADD MERCHANT TO DB
   handleAddMerchant = e => {
 
-    let merchant = this.state.merchant;
-    let merchantsList = [...this.state.merchantsList];
-    merchantsList.push(merchant);
-
-    this.setState({ merchantsList: merchantsList });
-
     e.preventDefault();
 
-    merchant = {
+    let merchant = {
       id: this.state.id,
       merchantName: this.state.merchantName,
       merchantDescription: this.state.merchantDescription
@@ -60,18 +52,17 @@ class Merchants extends Component {
         console.log(res);
         console.log(res.data);
       })
+
+      this.setState({ state: this.state });
   }
 
   deleteMerchant = rowIndex => {
 
     let merchantsList = [...this.state.merchantsList];
-    let merchant = this.state.merchant;
-
     merchantsList.splice(rowIndex, 1);
-
     this.setState({ merchantsList: merchantsList });
 
-    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + merchant.id) //mali pa to
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + this.props.id) //mali pa to
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -80,35 +71,45 @@ class Merchants extends Component {
 
   render() {
 
-    console.log('MERCHANTLIST: ');
-    console.log(this.state.merchantsList);
-
     return (
       <div>
-
         <h2>Merchants</h2>
 
         <Fragment>
           <form>
-            Merchant: <br/><input 
-                              type="text" 
-                              name="merchantName" 
-                              value={this.state.merchantName} 
-                              onChange={this.handleChangeInfo} /><br />
-            Description: <br/><input 
-                                type="text" 
-                                name="merchantDescription" 
-                                value={this.state.merchantDescription} 
-                                onChange={this.handleChangeInfo} /><br />
+            Merchant: <br /><input type="text" name="merchantName" value={this.state.merchantName} onChange={this.handleChangeInfo} /><br />
+            Description: <br /><input type="text" name="merchantDescription" value={this.state.merchantDescription} onChange={this.handleChangeInfo} /><br />
             <br />
             <button type="button" onClick={this.handleAddMerchant}>Add</button>
           </form>
         </Fragment>
         <br />
+        <Fragment>
+          <table className='merchant-table'>
+            <thead>
 
-        <div className='table-panel'>
-          <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
-        </div>
+            </thead>
+            <tbody>
+              <tr className='merchant-table-row'>
+                <th className='merchant-table-cell'>Merchant</th>
+                <th className='merchant-table-cell'>Description</th>
+                <th className='merchant-table-cell'></th>
+
+              </tr>
+              {
+                this.state.merchantsList.map((merchant, index) => {
+                  return (
+                    <tr className='merchant-table-row'>
+                      <th className='merchant-table-cell'>{merchant.merchantName}</th>
+                      <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
+                      <th className='merchant-table-cell'><button type='button' onClick={() => this.deleteMerchant(index)}>Delete</button></th>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </Fragment>
       </div>
     );
   }
