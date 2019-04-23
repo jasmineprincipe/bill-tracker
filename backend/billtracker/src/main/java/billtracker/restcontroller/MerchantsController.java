@@ -1,5 +1,11 @@
 package billtracker.restcontroller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -20,8 +26,6 @@ import org.apache.commons.lang3.StringUtils;
 import billtracker.domain.Merchant;
 import billtracker.service.MerchantService;
 import billtracker.service.MerchantServiceImpl;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Path("/merchants")
 public class MerchantsController {
@@ -52,7 +56,6 @@ public class MerchantsController {
 		} catch (Exception e) {
 			throw new WebApplicationException(e);
 		}
-
 	}
 
 	@GET
@@ -70,10 +73,9 @@ public class MerchantsController {
 	}
 
 	@POST
-	@JsonIgnoreProperties
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addMerchant(Merchant merchant) {
-		
+				
 		try {
 			merchantService.add(merchant);
 			String result = "Merchant saved : " + merchant.getMerchantName();
@@ -83,9 +85,8 @@ public class MerchantsController {
 		}
 
 	}
-
+       
 	@PUT
-	@JsonIgnoreProperties
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMerchant(Merchant merchant) {
 
@@ -100,7 +101,6 @@ public class MerchantsController {
 	}
 
 	@DELETE
-	@JsonIgnoreProperties
 	@Path("{id}")
 	public Response deleteMerchant(@PathParam("id") String id) {
 

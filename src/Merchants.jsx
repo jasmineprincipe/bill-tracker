@@ -1,26 +1,25 @@
-import React, { Component } from "react";
-import { Forms } from './components/forms.jsx'
+import React, { Component, Fragment } from "react";
 import { Tables } from './components/tables.jsx'
 import { getMerchantList } from './util/service-helper'
 import axios from 'axios'
 
 class Merchants extends Component {
-  constructor(props) {  
+
+  constructor(props) {
     super(props);
-    
+
     this.state = {
       merchantsList: [],
       merchant: {
-          id: '',
-          merchantName: '',
-          merchantDescription: ''
-        }
+        merchantName: '',
+        merchantDescription: ''
+      }
     };
   }
 
   // LIFE CYCLE METHODS
   componentDidMount() {
-    this.getMerchants(); 
+    this.getMerchants();
   }
 
   componentWillUnmount() {
@@ -30,36 +29,33 @@ class Merchants extends Component {
   // SERVICE METHODS
   getMerchants() {
     getMerchantList().then(res => {
-      this.setState({merchantsList : res.data});
-    }) 
+      this.setState({ merchantsList: res.data });
+    })
   }
 
   handleChangeInfo = e => {
-    const {name, value} = e.target;
 
-    this.setState((prevState) => ({
-      merchant: {
-        ...prevState.merchant,
-        [name]: value
-      }
-    }));
+    this.setState({ [e.target.name]: e.target.value });
   }
 
+  // ADD MERCHANT TO DB
   handleAddMerchant = e => {
 
     let merchant = this.state.merchant;
     let merchantsList = [...this.state.merchantsList];
     merchantsList.push(merchant);
 
-    this.setState({merchantsList : merchantsList});
+    this.setState({ merchantsList: merchantsList });
 
     e.preventDefault();
-    
-    var headers = {
-      'Content-Type': 'application/json',
-  }
 
-    axios.post('http://localhost:8080/billtracker/rest/merchants/', {merchant} )
+    merchant = {
+      id: this.state.id,
+      merchantName: this.state.merchantName,
+      merchantDescription: this.state.merchantDescription
+    }
+
+    axios.post('http://localhost:8080/billtracker/rest/merchants/', merchant)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -73,15 +69,14 @@ class Merchants extends Component {
 
     merchantsList.splice(rowIndex, 1);
 
-    this.setState({merchantsList: merchantsList});
+    this.setState({ merchantsList: merchantsList });
 
-    axios.delete('http://localhost:8080/billtracker/rest/merchants/'+merchant.id) //mali pa to
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + merchant.id) //mali pa to
       .then(res => {
         console.log(res);
         console.log(res.data);
       })
   }
-
 
   render() {
 
@@ -91,23 +86,32 @@ class Merchants extends Component {
     return (
       <div>
 
-      <h1>Merchants</h1>
+        <h2>Merchants</h2>
 
-      <div className='forms-panel'>
-        <Forms 
-          handleChangeInfo={this.handleChangeInfo} 
-          handleAddMerchant={this.handleAddMerchant} 
-        />
-      </div>
-      
-      <br/>
+        <Fragment>
+          <form>
+            Merchant: <br/><input 
+                              type="text" 
+                              name="merchantName" 
+                              value={this.state.merchantName} 
+                              onChange={this.handleChangeInfo} /><br />
+            Description: <br/><input 
+                                type="text" 
+                                name="merchantDescription" 
+                                value={this.state.merchantDescription} 
+                                onChange={this.handleChangeInfo} /><br />
+            <br />
+            <button type="button" onClick={this.handleAddMerchant}>Add</button>
+          </form>
+        </Fragment>
+        <br />
 
-      <div className='table-panel'>
-        <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
+        <div className='table-panel'>
+          <Tables merchantsList={this.state.merchantsList} deleteMerchant={this.deleteMerchant} />
+        </div>
       </div>
-  </div>
-);
-}
+    );
+  }
 }
 
 export default Merchants;

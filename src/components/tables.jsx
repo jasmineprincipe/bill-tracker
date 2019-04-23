@@ -24,7 +24,7 @@ class Tables extends Component {
                                 <tr className='merchant-table-row'>
                                     <th className='merchant-table-cell'>{merchant.merchantName}</th>
                                     <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
-                                    <th className='merchant-table-cell'><button type='button' onClick={() => this.props.deleteMerchant(index)}>Delete Merchant</button></th>
+                                    <th className='merchant-table-cell'><button type='button' onClick={() => this.props.deleteMerchant(index)}>Delete</button></th>
                                 </tr>
                             )
                     })
