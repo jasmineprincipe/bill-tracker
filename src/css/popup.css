@@ -1,20 +1,49 @@
-.popup {   
-    position: relative;
-    width: 100%;  
-    height: 100%;    
-    left: 0;  
-    right: 0;  
-    bottom: 0;  
-    margin-top: -100px;
-    background-color:grey;  
-  }  
-  .popup\_inner {  
-    position: fixed;  
-    left: 25%;  
-    right: 25%;  
-    top: 25%;  
-    bottom: 25%;  
-    margin: auto;  
-    border-radius: 20px;  
-    background: white;  
-  }
+h1 {
+  margin: 0;
+  padding: 0;
+}
+html, body, .app {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+.popup_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: white;
+}
+
+.add-merchant-button{
+  margin-top: -32px;
+  margin-left: -110px;
+  position: absolute;
+  padding-bottom: 0;
+  background-color: #3AAFA9;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  font-size: 12px;
+  width: 110px;
+  border-radius: 2px;
+}
+.add-merchant-button:hover {
+  opacity: 0.8
+}

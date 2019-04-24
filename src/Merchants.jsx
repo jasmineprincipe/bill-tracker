@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { getMerchantList } from './util/service-helper'
-import axios from 'axios'
+import Popup from './components/popup.jsx';
+import axios from 'axios';
 
 class Merchants extends Component {
 
@@ -12,10 +13,16 @@ class Merchants extends Component {
       merchant: {
         merchantName: '',
         merchantDescription: ''
-      }
+      },
+      showPopup: false
     };
   }
 
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
   // LIFE CYCLE METHODS
   componentDidMount() {
     this.getMerchants();
@@ -32,27 +39,29 @@ class Merchants extends Component {
     })
   }
 
-  handleChangeInfo = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  // handleChangeInfo = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
 
-  // ADD MERCHANT TO DB
-  handleAddMerchant = e => {
+  // // ADD MERCHANT TO DB
+  // handleAddMerchant = e => {
 
-    e.preventDefault();
+  //   e.preventDefault();
 
-    let merchant = {
-      id: this.state.id,
-      merchantName: this.state.merchantName,
-      merchantDescription: this.state.merchantDescription
-    }
+  //   let merchant = {
+  //     id: this.state.id,
+  //     merchantName: this.state.merchantName,
+  //     merchantDescription: this.state.merchantDescription
+  //   }
 
-    axios.post('http://localhost:8080/billtracker/rest/merchants/', merchant)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-  }
+  //   axios.post('http://localhost:8080/billtracker/rest/merchants/', merchant)
+  //     .then(res => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //     })
+
+  //     this.setState({ state: this.state });
+  // }
 
   deleteMerchant = rowIndex => {
 
@@ -71,11 +80,23 @@ class Merchants extends Component {
 
     return (
       <div>
-        <div className="content-header"><h2>Merchants</h2></div>
+        <div className="content-header"></div>
+          <h2>Merchants</h2>
         <div className="page-container">
+
+        <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Merchant</button>
+        {/* <button onClick={() => {alert('woooooooot?');}}>try me when popup is open</button> */}
+        {this.state.showPopup ? 
+          <Popup
+            text='Close Me'
+            closePopup={this.togglePopup.bind(this)}
+          />
+          : null
+        }
         <Fragment>
           <table className='merchant-table'>
             <thead>
+
             </thead>
             <tbody>
               <tr className='merchant-table-row'>
@@ -98,14 +119,7 @@ class Merchants extends Component {
           </table>
         </Fragment>
         <br />
-        <Fragment>
-          <form>
-            Merchant: <br /><input type="text" name="merchantName" value={this.state.merchantName} onChange={this.handleChangeInfo} /><br />
-            Description: <br /><input type="text" name="merchantDescription" value={this.state.merchantDescription} onChange={this.handleChangeInfo} /><br />
-            <br />
-            <button type="button" onClick={this.handleAddMerchant}>Add</button>
-          </form>
-        </Fragment>
+        
         </div>
       </div>
     );
