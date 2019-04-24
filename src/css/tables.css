@@ -33,10 +33,10 @@ table, td, th {
     width: 1200px;
   }
 
-  .merchant-table-header{
+  .merchant-table-header, .bill-table-header{
     padding-top: 15px;
     font-weight: bold;
   }
-  .merchant-table-cell{
+  .merchant-table-cell, .bill-table-cell{
     font-weight: normal;
   }
