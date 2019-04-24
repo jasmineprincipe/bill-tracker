@@ -5,6 +5,7 @@ table, td, th {
   }
   
   table {
+    display: table;
     font-size: 14px;
     width: 600px;
     float: left;
@@ -30,7 +31,6 @@ table, td, th {
 
   .page-container {
     width: 1200px;
-    margin: auto;
   }
 
   .merchant-table-header{

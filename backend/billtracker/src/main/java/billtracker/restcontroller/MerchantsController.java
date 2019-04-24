@@ -1,11 +1,5 @@
 package billtracker.restcontroller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -39,20 +33,20 @@ public class MerchantsController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Merchant> getMerchants(
-			@QueryParam("merchantName") String merchantName, 
+			@QueryParam("merchantName") String merchantName,
 			@QueryParam("merchantDescription") String merchantDescription) {
 
 		try {
 			List<Merchant> merchants;
-			
+
 			if (StringUtils.isAllBlank(merchantName, merchantDescription)) {
 				merchants = merchantService.findAll();
 			} else {
 				merchants = merchantService.findByName(merchantName);
 			}
-						
+
 			return merchants;
-			
+
 		} catch (Exception e) {
 			throw new WebApplicationException(e);
 		}
@@ -75,7 +69,7 @@ public class MerchantsController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addMerchant(Merchant merchant) {
-				
+
 		try {
 			merchantService.add(merchant);
 			String result = "Merchant saved : " + merchant.getMerchantName();
@@ -85,14 +79,15 @@ public class MerchantsController {
 		}
 
 	}
-       
+
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMerchant(Merchant merchant) {
 
 		try {
 			merchantService.upsert(merchant);
-			String result = "Merchant updated : " + merchant.getMerchantName() + " " + merchant.getMerchantDescription();
+			String result = "Merchant updated : " + merchant.getMerchantName() + " "
+					+ merchant.getMerchantDescription();
 			return Response.status(200).entity(result).build();
 		} catch (Exception e) {
 			throw new WebApplicationException(e);

@@ -52,8 +52,6 @@ class Merchants extends Component {
         console.log(res);
         console.log(res.data);
       })
-
-      this.setState({ state: this.state });
   }
 
   deleteMerchant = rowIndex => {
