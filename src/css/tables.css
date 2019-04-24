@@ -1,20 +1,42 @@
 table, td, th {
-    padding: 6px;
+    padding: 3px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
   
   table {
-    border-collapse: collapse;
+    font-size: 14px;
     width: 600px;
+    float: left;
+    border-collapse: collapse;
     background-color: #FEFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   th {
-    height: 30px;
+    padding-left: 20px;
+    height: 10px;
     text-align: left;
     background-color: #ddd;
     color: #17252A;
+  }
+
+  form{
+    width: 200px;
+    float: left;
+    height: 300px;
+    margin-left: 20px;
+  }
+
+  .page-container {
+    width: 1200px;
+    margin: auto;
+  }
+
+  .merchant-table-header{
+    padding-top: 15px;
     font-weight: bold;
+  }
+  .merchant-table-cell{
+    font-weight: normal;
   }

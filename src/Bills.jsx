@@ -4,7 +4,7 @@ class Bills extends Component {
   render() {
     return (
       <div>
-        <h2>Bills</h2>
+        <div className="content-header"><h2>Bills</h2></div>
         <p>Mauris sem velit, vehicula eget sodales vitae,
         rhoncus eget sapien:</p>
         <ol>

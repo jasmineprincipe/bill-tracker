@@ -1,13 +1,12 @@
-
 .sidenav {
     height: 100%;
     width: 220px;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     left: 0;
     background-color: #17252A;
     margin-top: -20px;
-    padding-top: 10px;
+    padding-top: 15px;
     -webkit-box-shadow:0px 1px 1px #cfcdcf;
     -moz-box-shadow:0px 1px 1px #cfcdcf;
     box-shadow:0px 1px 1px #cfcdcf;
@@ -32,11 +31,10 @@
   }
   
   .main {
-    margin-left: 250px; /* Same as the width of the sidenav */
+    margin-left: 250px;
 
   }
-  
-  @media screen {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+  /* .content-header {
+    position: fixed;
+    display: inline-block;
+  } */

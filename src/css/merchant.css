@@ -16,12 +16,12 @@
 .add-merchant-button:hover {
     opacity: 0.8
 }
-.merchant-list {
+/* .merchant-list {
     list-style: none;
     padding: 0;
 }
 .merchant-name {
-    font-size: 13px;
+    font-size: 23px;
 }
 .merchant-list li {
     background: rgb(217, 223, 224);
@@ -33,4 +33,4 @@
 .merchant-list-panel, .merchants-header{
     width: 700px;
     position: relative;
-}
+} */

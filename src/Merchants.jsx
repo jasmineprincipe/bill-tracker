@@ -73,28 +73,17 @@ class Merchants extends Component {
 
     return (
       <div>
-        <h2>Merchants</h2>
-
-        <Fragment>
-          <form>
-            Merchant: <br /><input type="text" name="merchantName" value={this.state.merchantName} onChange={this.handleChangeInfo} /><br />
-            Description: <br /><input type="text" name="merchantDescription" value={this.state.merchantDescription} onChange={this.handleChangeInfo} /><br />
-            <br />
-            <button type="button" onClick={this.handleAddMerchant}>Add</button>
-          </form>
-        </Fragment>
-        <br />
+        <div className="content-header"><h2>Merchants</h2></div>
+        <div className="page-container">
         <Fragment>
           <table className='merchant-table'>
             <thead>
-
             </thead>
             <tbody>
               <tr className='merchant-table-row'>
-                <th className='merchant-table-cell'>Merchant</th>
-                <th className='merchant-table-cell'>Description</th>
-                <th className='merchant-table-cell'></th>
-
+                <th className='merchant-table-header'>Merchant</th>
+                <th className='merchant-table-header'>Description</th>
+                <th className='merchant-table-header'></th>
               </tr>
               {
                 this.state.merchantsList.map((merchant, index) => {
@@ -110,6 +99,16 @@ class Merchants extends Component {
             </tbody>
           </table>
         </Fragment>
+        <br />
+        <Fragment>
+          <form>
+            Merchant: <br /><input type="text" name="merchantName" value={this.state.merchantName} onChange={this.handleChangeInfo} /><br />
+            Description: <br /><input type="text" name="merchantDescription" value={this.state.merchantDescription} onChange={this.handleChangeInfo} /><br />
+            <br />
+            <button type="button" onClick={this.handleAddMerchant}>Add</button>
+          </form>
+        </Fragment>
+        </div>
       </div>
     );
   }
