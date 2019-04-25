@@ -11,7 +11,11 @@ html, body, .app {
     height: 100vh;
 }
 
-.billform {
+.billform{
+    margin-left: 30px;
+}
+
+.billform-container {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -25,33 +29,29 @@ html, body, .app {
 
 .billform_inner {
     width: 360px;
-    height: 450px;
+    height: 470px;
     position: absolute;
     margin-left: 500px;
     margin-top: 120px;
     background: #17252A;
+    color: #ddd;
+    font-size: 14px;
 }
 
-.billform_inner input[type="text"], .billform_inner select {
+.billform_inner input[type="text"], .billform_inner input[type="number"], .billform_inner select {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     outline: none;
     display: block;
     width: 300px;
-    padding: 3px;
     border: none;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     background: transparent;
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
     color: #FFFFFF;
     margin: -10px;
-}
-
-::-webkit-input-placeholder {
-    /* WebKit, Blink, Edge */
-    color: #ddd;
 }
 
 .billform_inner h2 {
@@ -70,7 +70,7 @@ html, body, .app {
     overflow: hidden;
 }
 
-.form-submit-button {
+.billform-submit-button {
     -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
     -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
     box-shadow: inset 0px 1px 0px 0px #45D6D6;
@@ -81,8 +81,8 @@ html, body, .app {
     color: #17252A;
     font-weight: bold;
     font-size: 15px;
-    margin-left: -11px;
-    margin-top: 20px;
+    margin-left: -10px;
+    margin-top: 10px;
     padding: 8px 18px;
     text-decoration: none;
     text-transform: uppercase;
@@ -118,10 +118,6 @@ html, body, .app {
     opacity: 0.8
 }
 
-form {
-    padding-left: 10px;
-}
-
 .close-form-button {
     float: right;
     margin-top: -16px;
@@ -129,4 +125,8 @@ form {
     background: none;
     border: none;
     color: white;
+}
+label {
+    color: #ddd;
+    margin-left: -10px;
 }

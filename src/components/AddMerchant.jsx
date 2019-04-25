@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/popup.css';
+import '../css/merchant_form.css';
 import { getMerchantList } from '../util/service-helper'
 import axios from 'axios'
 
@@ -15,7 +15,7 @@ class AddMerchant extends Component {
       }
     };
   }
-  
+
   getMerchants() {
     getMerchantList().then(res => {
         this.setState({ merchantsList: res.data });
@@ -41,7 +41,7 @@ class AddMerchant extends Component {
         console.log(res);
         console.log(res.data);
       })
-      this.getMerchants();
+      window.location.reload();
   }
 
   render() {
@@ -51,8 +51,10 @@ class AddMerchant extends Component {
           <button className="close-form-button" onClick={this.props.closePopup}>X</button>
           <h2>Add Merchant</h2>
           <form>
-            <br /><input type="text" name="merchantName" placeholder="Merchant" value={this.merchantName} onChange={this.handleChangeInfo} />
-            <br /><input type="text" name="merchantDescription" placeholder="Description" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
+            <label>Merchant</label>
+            <br /><input type="text" name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo} />
+            <label>Description</label>
+            <br /><input type="text" name="merchantDescription" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
             <button type="button" className="form-submit-button" onClick={this.handleAddMerchant}>Submit</button>
           </form>
         </div>

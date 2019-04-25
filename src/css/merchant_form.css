@@ -40,7 +40,7 @@ html, body, .app {
 	width: 300px;
 	padding: 3px;
 	border: none;
-	border: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	background: transparent;
 	font: 16px Arial, Helvetica, sans-serif;
   height: 45px;
@@ -83,6 +83,7 @@ html, body, .app {
   text-transform: uppercase;
   width: 300px;
   height: 45px;
+  margin-left: 0px;
 }
 .popup_inner input[type="button"]:hover{
 	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
@@ -118,6 +119,12 @@ form {
   background: none;
   border: none;
   color: white;
+}
+
+label {
+  color: #ddd;
+  margin-left: 0px;
+  font-size: 13px;
 }
 
 /* .form-control-placeholder {

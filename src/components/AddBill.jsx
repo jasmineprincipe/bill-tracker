@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getMerchantList } from '../util/service-helper'
-import '../css/billform.css';
+import '../css/bill_form.css';
 import axios from 'axios'
 
 class AddBill extends Component {
@@ -22,7 +22,7 @@ class AddBill extends Component {
 
     componentDidMount() {
         this.getMerchants();
-      }
+    }
     handleChangeInfo = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
@@ -52,25 +52,31 @@ class AddBill extends Component {
                 console.log(res);
                 console.log(res.data);
             })
+        window.location.reload();
     }
     render() {
         let merchantOptions = this.state.merchantsList.map((merchant) =>
-                <option key={merchant.merchantName}>{merchant.merchantName}</option>
-            );
+            <option key={merchant.merchantName}>{merchant.merchantName}</option>
+        );
         return (
-        <div className='billform'>
-        <div className='billform_inner'>
-        <button className="close-form-button" onClick={this.props.closePopup}>X</button>
-          <h2>Add Bill</h2>
-        <form>
-          <br /> <select name="merchantName" placeholder="Merchant" value={this.merchantName} onChange={this.handleChangeInfo}> {merchantOptions} </select> <br></br>
-         <br /><input type="text" name="amount" placeholder="Amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
-        <br /><input type="text" name="serialNumber" placeholder="Serial Number" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
-          <br /><input type="text" name="billDate" placeholder="Bill Date" value={this.billDate} onChange={this.handleChangeInfo} /><br />
-          <br /><input type="text" name="dueDate" placeholder="Due Date" value={this.dueDate} onChange={this.handleChangeInfo} /><br />
-          <button type="button" className="form-submit-button" onClick={this.handleAddBill}>Submit</button>
-        </form>
-        </div>
+            <div className='billform-container'>
+                <div className='billform_inner'>
+                    <button className="close-form-button" onClick={this.props.closePopup}>X</button>
+                    <h2>Add Bill</h2>
+                    <form className='billform'>
+                        <label>Merchant</label>
+                            <br /> <select name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> {merchantOptions} </select> <br></br>
+                        <label>Amount</label>
+                            <br /><input type="text" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
+                        <label>Serial Number</label>
+                            <br /><input type="text" name="serialNumber" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
+                        <label>Bill Date</label><br />
+                            <input type="text" name="billDate" value={this.billDate} onChange={this.handleChangeInfo} /><br />
+                        <label>Due Date</label><br />
+                             <input type="text" name="dueDate" value={this.dueDate} onChange={this.handleChangeInfo} /><br />
+                        <button type="button" className="billform-submit-button" onClick={this.handleAddBill}>Submit</button>
+                    </form>
+                </div>
             </div>
         );
     }
