@@ -77,7 +77,8 @@ class Merchants extends Component {
                     <tr className='merchant-table-row'>
                       <th className='merchant-table-cell'>{merchant.merchantName}</th>
                       <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
-                      <th className='merchant-table-cell'><button type='button' onClick={() => this.deleteMerchant(merchant.id)}>Delete</button></th>
+                      <th className='merchant-table-cell'><button type='button' className='delete-button'
+                        onClick={() => this.deleteMerchant(merchant.id)}>Delete</button></th>
                     </tr>
                   )
                 })

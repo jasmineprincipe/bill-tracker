@@ -38,8 +38,8 @@ class Bills extends Component {
     })
   }
 
-  deleteBill(id) {
-    axios.delete('http://localhost:8080/billtracker/rest/bills/' + id)
+  deleteBill(billId) {
+    axios.delete('http://localhost:8080/billtracker/rest/bills/' + billId)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -76,7 +76,7 @@ class Bills extends Component {
               <th className='bill-table-header'></th>
             </tr>
             {
-              this.state.billsList.map((bill, index) => {
+              this.state.billsList.map((bill) => {
                 return (
                   <tr className='bill-table-row'>
                     <th className='bill-table-cell'>{bill.merchantName}</th>
@@ -84,7 +84,8 @@ class Bills extends Component {
                     <th className='bill-table-cell'>{bill.serialNumber}</th>
                     <th className='bill-table-cell'>{bill.billDate}</th>
                     <th className='bill-table-cell'>{bill.dueDate}</th>
-                    <th className='bill-table-cell'><button type='button' onClick={() => this.deleteBill(index)}>Delete</button></th>
+                    <th className='bill-table-cell'><button type='button' className="delete-button" 
+                    onClick={() => this.deleteBill(bill.billId)}>Delete</button></th>
                   </tr>
                 )
               })
