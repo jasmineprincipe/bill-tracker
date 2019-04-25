@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/popup.css';
 import axios from 'axios'
 
-class Popup extends Component {  
+class Popup extends Component {
   constructor(props) {
     super(props);
 
@@ -36,24 +36,24 @@ class Popup extends Component {
         console.log(res.data);
       })
 
-      this.setState({ state: this.state });
+    this.setState({ state: this.state });
   }
 
-  render() {  
-return (  
-<div className='popup'>
+  render() {
+    return (
+      <div className='popup'>
         <div className='popup_inner'>
+          <button className="close-form-button" onClick={this.props.closePopup}>X</button>
+          <h2>Add Merchant</h2>
           <form>
-            Merchant: <br /><input type="text" name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo} /><br />
-            Description: <br /><input type="text" name="merchantDescription" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
-            <br />
-            <button type="button" onClick={this.handleAddMerchant}>Add</button>
+            <br /><input type="text" name="merchantName" placeholder="Merchant" value={this.merchantName} onChange={this.handleChangeInfo} />
+            <br /><input type="text" name="merchantDescription" placeholder="Description" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
+            <button type="button" className="form-submit-button" onClick={this.handleAddMerchant}>Submit</button>
           </form>
-        <button onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
-);  
-}  
-}  
+    );
+  }
+}
 
 export default Popup;

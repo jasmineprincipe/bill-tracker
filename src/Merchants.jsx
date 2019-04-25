@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { getMerchantList } from './util/service-helper'
-import Popup from './components/popup.jsx';
+import AddMerchant from './components/AddMerchant.jsx';
 import axios from 'axios';
 
 class Merchants extends Component {
@@ -10,10 +10,6 @@ class Merchants extends Component {
 
     this.state = {
       merchantsList: [],
-      merchant: {
-        merchantName: '',
-        merchantDescription: ''
-      },
       showPopup: false
     };
   }
@@ -39,30 +35,6 @@ class Merchants extends Component {
     })
   }
 
-  // handleChangeInfo = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
-
-  // // ADD MERCHANT TO DB
-  // handleAddMerchant = e => {
-
-  //   e.preventDefault();
-
-  //   let merchant = {
-  //     id: this.state.id,
-  //     merchantName: this.state.merchantName,
-  //     merchantDescription: this.state.merchantDescription
-  //   }
-
-  //   axios.post('http://localhost:8080/billtracker/rest/merchants/', merchant)
-  //     .then(res => {
-  //       console.log(res);
-  //       console.log(res.data);
-  //     })
-
-  //     this.setState({ state: this.state });
-  // }
-
   deleteMerchant = rowIndex => {
 
     let merchantsList = [...this.state.merchantsList];
@@ -87,7 +59,7 @@ class Merchants extends Component {
         <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Merchant</button>
         {/* <button onClick={() => {alert('woooooooot?');}}>try me when popup is open</button> */}
         {this.state.showPopup ? 
-          <Popup
+          <AddMerchant
             text='Close Me'
             closePopup={this.togglePopup.bind(this)}
           />

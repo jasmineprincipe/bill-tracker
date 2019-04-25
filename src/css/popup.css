@@ -21,13 +21,72 @@ html, body, .app {
   background-color: rgba(0,0,0, 0.5);
 }
 .popup_inner {
+  width: 360px;
+  height: 300px;
   position: absolute;
   left: 25%;
   right: 25%;
   top: 25%;
   bottom: 25%;
   margin: auto;
-  background: white;
+  background: #17252A;
+}
+.popup_inner input[type="text"],.popup_inner select {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 300px;
+	padding: 3px;
+	border: none;
+	border: 1px solid #ddd;
+	background: transparent;
+	font: 16px Arial, Helvetica, sans-serif;
+  height: 45px;
+  color: #FFFFFF;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #ddd;
+}
+
+.popup_inner h2{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: white;
+	font-size: 22px;
+	font-weight: 100;
+  padding-top: 30px;
+	margin: 0;
+}
+
+.popup_inner textarea{
+	resize:none;
+	overflow: hidden;
+}
+.form-submit-button{
+	-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	background-color: #2CBBBB;
+	border: 1px solid #27A0A0;
+	display: inline-block;
+	cursor: pointer;
+  color: #17252A;
+  font-weight: bold;
+	font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  margin-top: 2px;
+	padding: 8px 18px;
+	text-decoration: none;
+  text-transform: uppercase;
+  width: 300px;
+  height: 45px;
+}
+.popup_inner input[type="button"]:hover{
+	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+	background-color:#34CACA;
 }
 
 .add-merchant-button{
@@ -47,3 +106,37 @@ html, body, .app {
 .add-merchant-button:hover {
   opacity: 0.8
 }
+
+form {
+  padding-left: 10px;
+}
+
+.close-form-button {
+  float: right;
+  margin-top: -16px;
+  margin-right: -5px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+/* .form-control-placeholder {
+  position: absolute;
+  color: #ddd;
+  top: 0;
+  padding-left: 10px;
+  padding-top: 30px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate3d(0, -50%, 0);
+  opacity: 1;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+} */
