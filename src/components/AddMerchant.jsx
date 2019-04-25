@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/popup.css';
 import axios from 'axios'
 
-class Popup extends Component {
+class AddMerchant extends Component {
   constructor(props) {
     super(props);
 
@@ -56,4 +56,4 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+export default AddMerchant;

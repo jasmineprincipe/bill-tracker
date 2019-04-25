@@ -1,0 +1,132 @@
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, .app {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.billform {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.billform_inner {
+    width: 360px;
+    height: 450px;
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 120px;
+    background: #17252A;
+}
+
+.billform_inner input[type="text"], .billform_inner select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 300px;
+    padding: 3px;
+    border: none;
+    border: 1px solid #ddd;
+    background: transparent;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+    color: #FFFFFF;
+    margin: -10px;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #ddd;
+}
+
+.billform_inner h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: white;
+    font-size: 22px;
+    font-weight: 100;
+    padding-top: 30px;
+    margin: 0;
+}
+
+.billform_inner textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+.form-submit-button {
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    background-color: #2CBBBB;
+    border: 1px solid #27A0A0;
+    display: inline-block;
+    cursor: pointer;
+    color: #17252A;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: -11px;
+    margin-top: 20px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 300px;
+    height: 45px;
+}
+
+.billform_inner input[type="button"]:hover {
+    background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+    background-color: #34CACA;
+}
+
+.billform_inner select[name="merchantName"]:hover {
+    background-color: #17252A;
+}
+
+.add-merchant-button {
+    margin-top: -32px;
+    margin-left: -110px;
+    position: absolute;
+    padding-bottom: 0;
+    background-color: #3AAFA9;
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-align: center;
+    font-size: 12px;
+    width: 110px;
+    border-radius: 2px;
+}
+
+.add-merchant-button:hover {
+    opacity: 0.8
+}
+
+form {
+    padding-left: 10px;
+}
+
+.close-form-button {
+    float: right;
+    margin-top: -16px;
+    margin-right: -5px;
+    background: none;
+    border: none;
+    color: white;
+}
