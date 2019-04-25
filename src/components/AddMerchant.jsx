@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/popup.css';
+import { getMerchantList } from '../util/service-helper'
 import axios from 'axios'
 
 class AddMerchant extends Component {
@@ -14,7 +15,12 @@ class AddMerchant extends Component {
       }
     };
   }
-
+  
+  getMerchants() {
+    getMerchantList().then(res => {
+        this.setState({ merchantsList: res.data });
+    })
+}
   handleChangeInfo = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -35,8 +41,7 @@ class AddMerchant extends Component {
         console.log(res);
         console.log(res.data);
       })
-
-    this.setState({ state: this.state });
+      this.getMerchants();
   }
 
   render() {

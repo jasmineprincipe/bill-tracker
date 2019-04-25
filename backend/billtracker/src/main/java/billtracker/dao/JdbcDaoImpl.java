@@ -225,7 +225,6 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		private void insertInitBills() {
 
 			add(new Bill("Meralco", null, "123ABC", "2000-10-10", "2000-11-11"));
-			add(new Bill("Cignal", null, "111ABC", "2000-10-10", "2000-11-11"));
 			add(new Bill("Maynilad", null, "961ATH", "2000-10-10", "2000-11-11"));
 		}
 

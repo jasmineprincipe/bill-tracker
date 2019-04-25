@@ -35,17 +35,13 @@ class Merchants extends Component {
     })
   }
 
-  deleteMerchant = rowIndex => {
-
-    let merchantsList = [...this.state.merchantsList];
-    merchantsList.splice(rowIndex, 1);
-    this.setState({ merchantsList: merchantsList });
-
-    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + this.props.id) //mali pa to
+  deleteMerchant(id) {
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + id)
       .then(res => {
         console.log(res);
         console.log(res.data);
-      })
+        this.getMerchants();
+      }) 
   }
 
   render() {
@@ -57,7 +53,6 @@ class Merchants extends Component {
         <div className="page-container">
 
         <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Merchant</button>
-        {/* <button onClick={() => {alert('woooooooot?');}}>try me when popup is open</button> */}
         {this.state.showPopup ? 
           <AddMerchant
             text='Close Me'
@@ -77,12 +72,12 @@ class Merchants extends Component {
                 <th className='merchant-table-header'></th>
               </tr>
               {
-                this.state.merchantsList.map((merchant, index) => {
+                this.state.merchantsList.map((merchant) => {
                   return (
                     <tr className='merchant-table-row'>
                       <th className='merchant-table-cell'>{merchant.merchantName}</th>
                       <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
-                      <th className='merchant-table-cell'><button type='button' onClick={() => this.deleteMerchant(index)}>Delete</button></th>
+                      <th className='merchant-table-cell'><button type='button' onClick={() => this.deleteMerchant(merchant.id)}>Delete</button></th>
                     </tr>
                   )
                 })
