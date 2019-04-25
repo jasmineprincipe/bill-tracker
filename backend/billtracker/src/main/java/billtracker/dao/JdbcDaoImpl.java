@@ -209,8 +209,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 					+ "merchant_name VARCHAR(255) FOREIGN KEY REFERENCES MERCHANTS(merchant_name), "
 					+ "amount DOUBLE, "
 					+ "serial_number VARCHAR(12) UNIQUE NOT NULL, "
-					+ "bill_date VARCHAR(10) NOT NULL,"
-					+ "due_date VARCHAR(10) NOT NULL)";
+					+ "bill_date DATE ,"
+					+ "due_date DATE )";
 
 			try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
 
@@ -224,8 +224,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 		private void insertInitBills() {
 
-			add(new Bill("Meralco", null, "123ABC", "2000-10-10", "2000-11-11"));
-			add(new Bill("Maynilad", null, "961ATH", "2000-10-10", "2000-11-11"));
+			add(new Bill("Meralco", null, "123ABC", null, null));
+			add(new Bill("Maynilad", null, "961ATH", null, null));
 		}
 
 		@Override
@@ -252,8 +252,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 								results.getString("merchant_name"),
 								results.getBigDecimal("amount"),
 								results.getString("serial_number"),
-								results.getString("bill_date"),
-								results.getString("due_date"));
+								results.getDate("bill_date"),
+								results.getDate("due_date"));
 					}
 
 				} catch (SQLException e) {
@@ -283,8 +283,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 							results.getString("merchant_name"),
 							results.getBigDecimal("amount"),
 							results.getString("serial_number"),
-							results.getString("bill_date"),
-							results.getString("due_date"));
+							results.getDate("bill_date"),
+							results.getDate("due_date"));
 					bills.add(bill);
 				}
 
@@ -306,8 +306,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				ps.setString(1, bill.getMerchantName());
 				ps.setBigDecimal(2, bill.getAmount());
 				ps.setString(3, bill.getSerialNumber());
-				ps.setString(4, bill.getBillDate());
-				ps.setString(5, bill.getDueDate());
+				ps.setDate(4, bill.getBillDate());
+				ps.setDate(5, bill.getDueDate());
 				ps.executeUpdate();
 
 			} catch (SQLException e) {
@@ -325,8 +325,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				ps.setString(1, bill.getMerchantName());
 				ps.setBigDecimal(2, bill.getAmount());
 				ps.setString(3, bill.getSerialNumber());
-				ps.setString(4, bill.getBillDate());
-				ps.setString(5, bill.getDueDate());
+				ps.setDate(4, bill.getBillDate());
+				ps.setDate(5, bill.getDueDate());
 				ps.setLong(6, bill.getBillId());
 				ps.executeUpdate();
 

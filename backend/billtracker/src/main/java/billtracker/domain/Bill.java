@@ -1,24 +1,25 @@
 package billtracker.domain;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 public class Bill {
 	Long billId;
 	private String merchantName;
 	private BigDecimal amount;
 	private String serialNumber;
-	private String billDate;
-	private String dueDate;
+	private Date billDate;
+	private Date dueDate;
 	
 	public Bill() {
 		
 	}
 	
-	public Bill(String merchantName, BigDecimal amount, String serialNumber, String billDate, String dueDate) {
+	public Bill(String merchantName, BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
 		this(null, merchantName, amount, serialNumber, billDate, dueDate);
 	}
 
-	public Bill(Long billId, String merchantName, BigDecimal amount, String serialNumber, String billDate, String dueDate) {
+	public Bill(Long billId, String merchantName, BigDecimal amount, String serialNumber, Date billDate, Date dueDate) {
 		this.billId = billId;
 		this.merchantName = merchantName;
 		this.amount = amount;
@@ -51,19 +52,19 @@ public class Bill {
 		this.serialNumber = serialNumber;
 	}
 
-	public String getBillDate() {
+	public Date getBillDate() {
 		return billDate;
 	}
 
-	public void setBillDate(String billDate) {
+	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 

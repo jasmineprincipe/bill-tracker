@@ -121,7 +121,7 @@ form {
   color: white;
 }
 
-label {
+.form-label {
   color: #ddd;
   margin-left: 0px;
   font-size: 13px;

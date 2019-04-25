@@ -64,16 +64,16 @@ class AddBill extends Component {
                     <button className="close-form-button" onClick={this.props.closePopup}>X</button>
                     <h2>Add Bill</h2>
                     <form className='billform'>
-                        <label>Merchant</label>
+                        <label className="form-label">Merchant</label>
                             <br /> <select name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> {merchantOptions} </select> <br></br>
-                        <label>Amount</label>
-                            <br /><input type="text" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
-                        <label>Serial Number</label>
-                            <br /><input type="text" name="serialNumber" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
-                        <label>Bill Date</label><br />
-                            <input type="text" name="billDate" value={this.billDate} onChange={this.handleChangeInfo} /><br />
-                        <label>Due Date</label><br />
-                             <input type="text" name="dueDate" value={this.dueDate} onChange={this.handleChangeInfo} /><br />
+                        <label className="form-label">Amount</label>
+                            <br /><input type="number" min="1" step="any" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
+                        <label className="form-label">Serial Number</label>
+                            <br /><input type="text" name="serialNumber" maxlength="12" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
+                        <label className="form-label">Bill Date</label><br />
+                            <input type="date" name="billDate" value={this.billDate} onChange={this.handleChangeInfo} /><br />
+                        <label className="form-label">Due Date</label><br />
+                             <input type="date" name="dueDate" value={this.dueDate} onChange={this.handleChangeInfo} /><br />
                         <button type="button" className="billform-submit-button" onClick={this.handleAddBill}>Submit</button>
                     </form>
                 </div>

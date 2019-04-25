@@ -38,7 +38,7 @@ html, body, .app {
     font-size: 14px;
 }
 
-.billform_inner input[type="text"], .billform_inner input[type="number"], .billform_inner select {
+.billform_inner input[type="text"], .billform_inner input[type="number"], .billform_inner input[type="date"], .billform_inner select {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -126,7 +126,7 @@ html, body, .app {
     border: none;
     color: white;
 }
-label {
+.form-label {
     color: #ddd;
     margin-left: -10px;
 }

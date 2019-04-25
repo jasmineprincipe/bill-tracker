@@ -51,9 +51,9 @@ class AddMerchant extends Component {
           <button className="close-form-button" onClick={this.props.closePopup}>X</button>
           <h2>Add Merchant</h2>
           <form>
-            <label>Merchant</label>
+            <label className="form-label">Merchant</label>
             <br /><input type="text" name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo} />
-            <label>Description</label>
+            <label className="form-label">Description</label>
             <br /><input type="text" name="merchantDescription" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
             <button type="button" className="form-submit-button" onClick={this.handleAddMerchant}>Submit</button>
           </form>
