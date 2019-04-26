@@ -146,7 +146,7 @@ html, body, .app {
     border-radius: 2px;
   }
 
-  .view-button {
+  .edit-button {
     background: rgb(0, 158, 26);
     border: none;
     text-align: center;

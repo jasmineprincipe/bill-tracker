@@ -71,10 +71,11 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 	private void insertInitMerchants() {
 
 		add(new Merchant("Meralco","Electricty"));
-		add(new Merchant("Globe Telecom","Cellular Phones"));
+		add(new Merchant("Globe","Phone"));
 		add(new Merchant("Cignal","Cable TV"));
 		add(new Merchant("PLDT","Internet"));
 		add(new Merchant("Maynilad","Water"));
+		add(new Merchant("Smart","Phone"));
 	}
 
 	@Override
@@ -226,6 +227,13 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 			add(new Bill("Meralco", null, "123ABC", null, null));
 			add(new Bill("Maynilad", null, "961ATH", null, null));
+			add(new Bill("Meralco", null, "430ABC", null, null));
+			add(new Bill("Meralco", null, "671ATH", null, null));
+			add(new Bill("Smart", null, "961TVG", null, null));
+			add(new Bill("Cignal", null, "438BZC", null, null));
+			add(new Bill("Maynilad", null, "613NTH", null, null));
+			add(new Bill("Globe", null, "309BZC", null, null));
+			add(new Bill("PLDT", null, "648NTH", null, null));
 		}
 
 		@Override

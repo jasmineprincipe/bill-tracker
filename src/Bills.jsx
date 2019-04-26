@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { getMerchantList } from './util/service-helper'
 import { getBillList } from './util/service-helper'
-// import { getMerchantList } from './util/service-helper';
 import AddBill from './components/AddBill.jsx';
 import axios from 'axios'
  
@@ -25,6 +25,7 @@ class Bills extends Component {
   // LIFE CYCLE METHODS
   componentDidMount() {
     this.getBills();
+    this.getMerchants();
   }
 
   componentWillUnmount() {
@@ -38,6 +39,16 @@ class Bills extends Component {
     })
   }
 
+  getMerchants() {
+    getMerchantList().then(res => {
+        this.setState({ merchantsList: res.data });
+    })
+  }
+
+  handleChangeInfo = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   deleteBill(billId) {
     axios.delete('http://localhost:8080/billtracker/rest/bills/' + billId)
       .then(res => {
@@ -48,11 +59,20 @@ class Bills extends Component {
   }
 
   render() {
+    let merchantOptions = this.state.merchantsList.map((merchant) =>
+            <option key={merchant.merchantName}>{merchant.merchantName}</option>
+    );
     return (
       <div>
+        <div className="filter-container">
+          <label className="filter-label">Filter by Merchant</label><br />
+            <select  name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> 
+                {merchantOptions}
+            </select> <br></br>
+        </div>
+
       <div className="content-header"><h2>Bills</h2></div>
       <div className="page-container">
-
       <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Bill</button>
         {this.state.showPopup ? 
           <AddBill
@@ -84,7 +104,9 @@ class Bills extends Component {
                     <th className='bill-table-cell'>{bill.serialNumber}</th>
                     <th className='bill-table-cell'>{bill.billDate}</th>
                     <th className='bill-table-cell'>{bill.dueDate}</th>
-                    <th className='bill-table-cell'><button type='button' className="delete-button" 
+                    <th className='bill-table-cell'>
+                    <button type='button' className='edit-button'>Edit</button>
+                    <button type='button' className="delete-button" 
                     onClick={() => this.deleteBill(bill.billId)}>Delete</button></th>
                   </tr>
                 )

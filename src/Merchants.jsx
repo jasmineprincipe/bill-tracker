@@ -44,6 +44,14 @@ class Merchants extends Component {
       }) 
   }
 
+  getBillsByMerchant(merchantName) {
+    axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        this.getMerchants();
+      })
+  }
   render() {
 
     return (
@@ -78,7 +86,8 @@ class Merchants extends Component {
                       <th className='merchant-table-cell'>{merchant.merchantName}</th>
                       <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
                       <th className='merchant-table-cell'>
-                      <button type='button' className='view-button'>View Bills</button>
+                      <button type='button' className='edit-button'
+                        onClick={() => this.getBillsByMerchant(merchant.merchantName)} >View Bills</button>
                       <button type='button' className='delete-button'
                         onClick={() => this.deleteMerchant(merchant.id)}>Delete</button>
                       </th>
