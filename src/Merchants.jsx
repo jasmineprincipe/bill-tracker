@@ -52,15 +52,15 @@ class Merchants extends Component {
       }) 
   }
 
-  // getBillsByMerchant(merchantName) {
-  //   axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
-  //     .then(res => {
-  //       this.setState({ billsList: res.data })
-  //       console.log(res);
-  //       console.log(res.data);
-  //       this.getBills();
-  //     })
-  // }
+  getBillsByMerchant(merchantName) {
+    axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
+      .then(res => {
+        this.setState({ billsList: res.data })
+        console.log(res);
+        console.log(res.data);
+        this.getBills();
+      })
+  }
 
   render() {
 

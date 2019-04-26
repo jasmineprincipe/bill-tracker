@@ -47,6 +47,7 @@ class Bills extends Component {
 
   handleChangeInfo = e => {
     this.setState({ [e.target.name]: e.target.value });
+    this.getBillsByMerchant(e.target.options[e.target.selectedIndex].text); //get data from selected option from dropdown
   }
 
   deleteBill(billId) {
@@ -58,14 +59,13 @@ class Bills extends Component {
       }) 
   }
 
-    getBillsByMerchant(merchantName) {
-    axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
-      .then(res => {
-        this.setState({ billsList: res.data })
-        console.log(res);
-        console.log(res.data);
-
-      })
+  getBillsByMerchant(merchantName) {
+  axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
+    .then(res => {
+      this.setState({ billsList: res.data })
+      console.log(res);
+      console.log(res.data);
+    })
   }
 
   render() {
@@ -114,8 +114,7 @@ class Bills extends Component {
                     <th className='bill-table-cell'>{bill.billDate}</th>
                     <th className='bill-table-cell'>{bill.dueDate}</th>
                     <th className='bill-table-cell'>
-                    <button type='button' className='edit-button'
-                        onClick={() => this.getBillsByMerchant(bill.merchantName)} >View Bills </button>
+                    <button type='button' className='edit-button'>Edit</button>
                     <button type='button' className="delete-button" 
                     onClick={() => this.deleteBill(bill.billId)}>Delete</button></th>
                   </tr>
