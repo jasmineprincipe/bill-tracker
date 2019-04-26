@@ -41,3 +41,32 @@ table, td, th {
     font-weight: normal;
   }
 
+.bill-filter-container {
+  color: #17252A;
+  position: fixed;
+  right: 0;
+  padding-right: 225px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.bill-filter-label {
+  margin-right: 20px;
+}
+.bill-filter-container select {
+  width: 120px;
+  font-size: 16px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  font: 16px;
+  height: 45px;
+  margin: -10px;
+  font-weight: bold;
+  padding: 0px;
+  color: #2B7A78;
+}
