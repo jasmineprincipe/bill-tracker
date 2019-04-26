@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import './css/header.css';
 import './css/body.css';
 import './css/tables.css';
+import './css/merchant_form.css';
+import './css/bill_form.css';
 import './css/App.css';
 import Header from './components/header.jsx';
-import {
-  Route,
-  NavLink,
-  HashRouter
-} from "react-router-dom";
+import { Route, NavLink, HashRouter } from "react-router-dom";
 import Home from "./Home";
 import Bills from "./Bills";
 import Merchants from "./Merchants";

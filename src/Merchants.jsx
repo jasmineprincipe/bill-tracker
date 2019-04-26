@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { getMerchantList } from './util/service-helper'
+import { getBillList } from './util/service-helper'
 import AddMerchant from './components/AddMerchant.jsx';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ class Merchants extends Component {
     super(props);
 
     this.state = {
+      billsList: [],
       merchantsList: [],
       showPopup: false
     };
@@ -19,6 +21,7 @@ class Merchants extends Component {
       showPopup: !this.state.showPopup
     });
   }
+
   // LIFE CYCLE METHODS
   componentDidMount() {
     this.getMerchants();
@@ -34,6 +37,11 @@ class Merchants extends Component {
       this.setState({ merchantsList: res.data });
     })
   }
+  getBills() {
+    getBillList().then(res => {
+      this.setState({ billsList: res.data });
+    })
+  }
 
   deleteMerchant(id) {
     axios.delete('http://localhost:8080/billtracker/rest/merchants/' + id)
@@ -47,11 +55,13 @@ class Merchants extends Component {
   getBillsByMerchant(merchantName) {
     axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
       .then(res => {
+        this.setState({ billsList: res.data })
         console.log(res);
         console.log(res.data);
-        this.getMerchants();
+        this.getBills();
       })
   }
+
   render() {
 
     return (
@@ -107,3 +117,4 @@ class Merchants extends Component {
 }
 
 export default Merchants;
+

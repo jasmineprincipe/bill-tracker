@@ -73,7 +73,7 @@ class Bills extends Component {
 
       <div className="content-header"><h2>Bills</h2></div>
       <div className="page-container">
-      <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Bill</button>
+      <button className="add-bill-button" onClick={this.togglePopup.bind(this)}>Add Bill</button>
         {this.state.showPopup ? 
           <AddBill
             text='Close Me'
@@ -81,7 +81,6 @@ class Bills extends Component {
           />
           : null
         }
-
       <Fragment>
         <table className='bill-table'>
           <thead>

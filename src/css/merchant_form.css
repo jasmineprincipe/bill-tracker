@@ -91,8 +91,8 @@ html, body, .app {
 }
 
 .add-merchant-button{
-  margin-top: -32px;
-  margin-left: -110px;
+  margin-top: -47px;
+  margin-left: -765px;
   position: absolute;
   padding-bottom: 0;
   background-color: #3AAFA9;
@@ -100,9 +100,10 @@ html, body, .app {
   color: white;
   padding: 5px 12px;
   text-align: center;
-  font-size: 12px;
-  width: 110px;
+  font-size: 14px;
+  width: 120px;
   border-radius: 2px;
+  font-weight: bold;
 }
 .add-merchant-button:hover {
   opacity: 0.8
