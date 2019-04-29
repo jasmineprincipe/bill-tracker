@@ -11,7 +11,7 @@ html, body, .app {
     height: 100vh;
 }
 
-.billform{
+.billform {
     margin-left: 30px;
 }
 
@@ -134,27 +134,3 @@ html, body, .app {
     color: #ddd;
     margin-left: -10px;
 }
-
-.delete-button {
-    background: rgb(204, 13, 51);
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    color: #ddd;
-    border-radius: 2px;
-  }
-
-  .edit-button {
-    background: rgb(0, 158, 26);
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    color: #ddd;
-    border-radius: 2px;
-  }

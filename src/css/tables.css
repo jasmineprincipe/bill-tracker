@@ -1,45 +1,46 @@
 table, td, th {
-    padding: 3px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table {
-    display: table;
-    font-size: 14px;
-    width: 900px;
-    float: left;
-    border-collapse: collapse;
-    background-color: #FEFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  th {
-    padding-left: 20px;
-    height: 10px;
-    text-align: left;
-    background-color: #ddd;
-    color: #17252A;
-  }
+  padding: 3px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-  form{
-    width: 200px;
-    float: left;
-    height: 300px;
-    margin-left: 20px;
-  }
+table {
+  display: table;
+  font-size: 14px;
+  width: 900px;
+  float: left;
+  border-collapse: collapse;
+  background-color: #FEFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-  .page-container {
-    width: 1200px;
-  }
+th {
+  padding-left: 20px;
+  height: 10px;
+  text-align: left;
+  background-color: #ddd;
+  color: #17252A;
+}
 
-  .merchant-table-header, .bill-table-header{
-    padding-top: 15px;
-    font-weight: bold;
-  }
-  .merchant-table-cell, .bill-table-cell{
-    font-weight: normal;
-  }
+form {
+  width: 200px;
+  float: left;
+  height: 300px;
+  margin-left: 20px;
+}
+
+.page-container {
+  width: 1200px;
+}
+
+.merchant-table-header, .bill-table-header {
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+.merchant-table-cell, .bill-table-cell {
+  font-weight: normal;
+}
 
 .bill-filter-container {
   color: #17252A;
@@ -50,9 +51,11 @@ table, td, th {
   font-size: 16px;
   font-weight: bold;
 }
+
 .bill-filter-label {
   margin-right: 20px;
 }
+
 .bill-filter-container select {
   width: 120px;
   font-size: 16px;
@@ -69,4 +72,28 @@ table, td, th {
   font-weight: bold;
   padding: 0px;
   color: #2B7A78;
+}
+
+.delete-button {
+  background: rgb(204, 13, 51);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  color: #ddd;
+  border-radius: 2px;
+}
+
+.edit-button {
+  background: rgb(0, 158, 26);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  color: #ddd;
+  border-radius: 2px;
 }

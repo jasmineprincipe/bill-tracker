@@ -23,17 +23,17 @@ class AddBill extends Component {
     componentDidMount() {
         this.getMerchants();
     }
-    handleChangeInfo = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
+    
     getMerchants() {
         getMerchantList().then(res => {
             this.setState({ merchantsList: res.data });
         })
     }
 
-    // ADD BILL TO DB
+    handleChangeInfo = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
     handleAddBill = e => {
 
         e.preventDefault();
@@ -46,7 +46,7 @@ class AddBill extends Component {
             billDate: this.state.billDate,
             dueDate: this.state.dueDate
         }
-
+        // ADD NEW BILL TO DATABASE
         axios.post('http://localhost:8080/billtracker/rest/bills/', bill)
             .then(res => {
                 console.log(res);
@@ -55,10 +55,13 @@ class AddBill extends Component {
         window.location.reload();
     }
     render() {
+
+        // POPULATE DROPDOWN WITH EXISTING DATA FROM MERCHANTS LIST
         let merchantOptions = this.state.merchantsList.map((merchant) =>
             <option key={merchant.merchantName}>{merchant.merchantName}</option>
         );
         return (
+            // DISPLAY BILL FORM
             <div className='billform-container'>
                 <div className='billform_inner'>
                     <button className="close-form-button" onClick={this.props.closePopup}>X</button>

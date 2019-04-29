@@ -20,12 +20,12 @@ class AddMerchant extends Component {
     getMerchantList().then(res => {
         this.setState({ merchantsList: res.data });
     })
-}
+  }
+  
   handleChangeInfo = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  // ADD MERCHANT TO DB
   handleAddMerchant = e => {
 
     e.preventDefault();
@@ -35,7 +35,7 @@ class AddMerchant extends Component {
       merchantName: this.state.merchantName,
       merchantDescription: this.state.merchantDescription
     }
-
+    // ADD NEW MERCHANT TO DATABASE
     axios.post('http://localhost:8080/billtracker/rest/merchants/', merchant)
       .then(res => {
         console.log(res);
@@ -46,6 +46,7 @@ class AddMerchant extends Component {
 
   render() {
     return (
+      // DISPLAY MERCHANT FORM
       <div className='popup'>
         <div className='popup_inner'>
           <button className="close-form-button" onClick={this.props.closePopup}>X</button>

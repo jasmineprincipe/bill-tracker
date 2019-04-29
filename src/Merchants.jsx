@@ -26,7 +26,6 @@ class Merchants extends Component {
   componentDidMount() {
     this.getMerchants();
   }
-
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
@@ -43,6 +42,7 @@ class Merchants extends Component {
     })
   }
 
+  // DELETE MERCHANT FROM DATABASE
   deleteMerchant(merchantId) {
     axios.delete('http://localhost:8080/billtracker/rest/merchants/' + merchantId)
       .then(res => {
@@ -52,36 +52,22 @@ class Merchants extends Component {
       }) 
   }
 
-  getBillsByMerchant(merchantName) {
-    axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
-      .then(res => {
-        this.setState({ billsList: res.data })
-        console.log(res);
-        console.log(res.data);
-        this.getBills();
-      })
-  }
-
   render() {
-
     return (
       <div>
         <div className="content-header"></div>
           <h2>Merchants</h2>
         <div className="page-container">
-
         <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Merchant</button>
         {this.state.showPopup ? 
           <AddMerchant
             text='Close Me'
             closePopup={this.togglePopup.bind(this)}
           />
-          : null
-        }
+          : null}
         <Fragment>
           <table className='merchant-table'>
             <thead>
-
             </thead>
             <tbody>
               <tr className='merchant-table-row'>
@@ -90,14 +76,14 @@ class Merchants extends Component {
                 <th className='merchant-table-header'></th>
               </tr>
               {
+                // DISPLAY ADDED MERCHANTS TO TABLE
                 this.state.merchantsList.map((merchant) => {
                   return (
                     <tr className='merchant-table-row'>
                       <th className='merchant-table-cell'>{merchant.merchantName}</th>
                       <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
                       <th className='merchant-table-cell'>
-                      <button type='button' className='edit-button'
-                        onClick={() => this.getBillsByMerchant(merchant.merchantName)} >View Bills</button>
+                      <button type='button' className='edit-button'>View Bills</button>
                       <button type='button' className='delete-button'
                         onClick={() => this.deleteMerchant(merchant.merchantId)}>Delete</button>
                       </th>

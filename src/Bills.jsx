@@ -27,7 +27,6 @@ class Bills extends Component {
     this.getBills();
     this.getMerchants();
   }
-
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
@@ -38,7 +37,6 @@ class Bills extends Component {
       this.setState({ billsList: res.data });
     })
   }
-
   getMerchants() {
     getMerchantList().then(res => {
         this.setState({ merchantsList: res.data });
@@ -47,9 +45,12 @@ class Bills extends Component {
 
   handleChangeInfo = e => {
     this.setState({ [e.target.name]: e.target.value });
-    this.getBillsByMerchant(e.target.options[e.target.selectedIndex].text); //get data from selected option from dropdown
+
+    //GET DATA FROM SELECTED DROPDOWN OPTION
+    this.getBillsByMerchant(e.target.options[e.target.selectedIndex].text); 
   }
 
+  // DELETE BILL FROM DATABASE
   deleteBill(billId) {
     axios.delete('http://localhost:8080/billtracker/rest/bills/' + billId)
       .then(res => {
@@ -59,6 +60,7 @@ class Bills extends Component {
       }) 
   }
 
+  // GET BILLS FILTERED BY MERCHANT FROM DATABASE
   getBillsByMerchant(merchantName) {
   axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
     .then(res => {
@@ -69,10 +71,14 @@ class Bills extends Component {
   }
 
   render() {
+
+    // POPULATE DROPDOWN WITH EXISTING DATA FROM MERCHANTS LIST
     let merchantOptions = this.state.merchantsList.map((merchant) =>
             <option key={merchant.merchantName}>{merchant.merchantName}</option>
     );
     return (
+
+      // FILTER BILLS BY MERCHANT
       <div>
         <div className="bill-filter-container">
           <label className="bill-filter-label">Filter by Merchant </label>
@@ -80,7 +86,6 @@ class Bills extends Component {
                 {merchantOptions}
             </select> <br></br>
         </div>
-
       <div className="content-header"><h2>Bills</h2></div>
       <div className="page-container">
       <button className="add-bill-button" onClick={this.togglePopup.bind(this)}>Add Bill</button>
@@ -105,6 +110,7 @@ class Bills extends Component {
               <th className='bill-table-header'></th>
             </tr>
             {
+              // DISPLAY ADDED BILLS TO TABLE
               this.state.billsList.map((bill) => {
                 return (
                   <tr className='bill-table-row'>
