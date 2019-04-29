@@ -229,11 +229,6 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			add(new Bill("Maynilad", null, "961ATH", null, null));
 			add(new Bill("Meralco", null, "430ABC", null, null));
 			add(new Bill("Meralco", null, "671ATH", null, null));
-			add(new Bill("Smart", null, "961TVG", null, null));
-			add(new Bill("Cignal", null, "438BZC", null, null));
-			add(new Bill("Maynilad", null, "613NTH", null, null));
-			add(new Bill("Globe", null, "309BZC", null, null));
-			add(new Bill("PLDT", null, "648NTH", null, null));
 		}
 
 		@Override
@@ -302,6 +297,39 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			}
 
 			return bills;
+		}
+		
+		@Override
+		public List<Bill> findByMonth(String dueDate) {
+			List<Bill> currentbills = new ArrayList<>();
+
+			String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date FROM BILLS WHERE"
+					+ " DATEPART(m, due_date) = MONTH(CURDATE()) AND "
+					+ " DATEPART(yyyy, due_date) = YEAR(CURDATE())";
+			
+			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+				ps.setString(1, createSearchValue(dueDate));
+
+				ResultSet results = ps.executeQuery();
+
+				while (results.next()) {
+					Bill bill = new Bill(Long.valueOf
+							(results.getInt("bill_id")), 
+							results.getString("merchant_name"),
+							results.getBigDecimal("amount"),
+							results.getString("serial_number"),
+							results.getDate("bill_date"),
+							results.getDate("due_date"));
+					currentbills.add(bill);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+
+			return currentbills;
 		}
 
 		@Override

@@ -97,3 +97,7 @@ form {
   color: #ddd;
   border-radius: 2px;
 }
+
+.home-bill-table {
+  width: 500px;
+}

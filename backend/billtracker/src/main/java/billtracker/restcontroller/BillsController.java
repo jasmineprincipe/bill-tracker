@@ -35,20 +35,26 @@ public class BillsController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Bill> getBills(
 			@QueryParam("merchantName") String merchantName,
-			@QueryParam("amount") BigDecimal amount,
 			@QueryParam("serialNumber") String serialNumber,
-			@QueryParam("billDate") String billDate,
 			@QueryParam("dueDate") String dueDate) {
 
 		try {
-			List<Bill> bills;
+			List<Bill> bills = null;
 
-			if (StringUtils.isAllBlank(merchantName, serialNumber)) {
-				bills = billService.findAllBills();
-			} else {
+//			if (StringUtils.isAllBlank(merchantName, serialNumber)) {
+//				bills = billService.findAllBills();
+//			} else {
+//				bills = billService.findByMerchant(merchantName);
+//			}
+			
+			if(StringUtils.isNotBlank(merchantName)) {
 				bills = billService.findByMerchant(merchantName);
+			} else if (StringUtils.isBlank(merchantName) && StringUtils.isNotBlank(dueDate)) {
+				bills = billService.findByMonth(dueDate);
+			} else {
+				bills = billService.findAllBills();
 			}
-
+		
 			return bills;
 
 		} catch (Exception e) {

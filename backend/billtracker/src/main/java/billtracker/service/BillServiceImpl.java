@@ -29,6 +29,11 @@ public class BillServiceImpl implements BillService{
 	public List<Bill> findByMerchant(String merchantName) {
 		return billDao.findByMerchant(merchantName);
 	}
+	
+	@Override
+	public List<Bill> findByMonth(String dueDate) {
+		return billDao.findByMonth(dueDate);
+	}
 
 	@Override
 	public void add(Bill bill) {
