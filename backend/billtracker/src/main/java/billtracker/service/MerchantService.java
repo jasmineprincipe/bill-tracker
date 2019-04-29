@@ -8,7 +8,7 @@ public interface MerchantService {
 
 	public List<Merchant> findAll();
 	
-	public Merchant find(Long id);
+	public Merchant find(Long merchantId);
 	
 	public List<Merchant> findByName(String merchantName);
 	
@@ -16,6 +16,6 @@ public interface MerchantService {
 	
 	public void upsert(Merchant merchant);
 	
-	public void delete(Long id);
+	public void delete(Long merchantId);
 
 }

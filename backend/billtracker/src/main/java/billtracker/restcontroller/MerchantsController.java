@@ -53,12 +53,12 @@ public class MerchantsController {
 	}
 
 	@GET
-	@Path("{id}")
+	@Path("{merchant_id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Merchant getMerchant(@PathParam("id") String id) {
+	public Merchant getMerchant(@PathParam("merchant_id") String merchantId) {
 
 		try {
-			Long longId = Long.parseLong(id);
+			Long longId = Long.parseLong(merchantId);
 			Merchant merchant = merchantService.find(longId);
 			return merchant;
 		} catch (Exception e) {
@@ -96,11 +96,11 @@ public class MerchantsController {
 	}
 
 	@DELETE
-	@Path("{id}")
-	public Response deleteMerchant(@PathParam("id") String id) {
+	@Path("{merchant_id}")
+	public Response deleteMerchant(@PathParam("merchant_id") String merchantId) {
 
 		try {
-			Long longId = Long.parseLong(id);
+			Long longId = Long.parseLong(merchantId);
 			merchantService.delete(longId);
 			String result = "Merchant deleted";
 			return Response.status(200).entity(result).build();

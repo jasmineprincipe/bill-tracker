@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Merchant {
 	
-	Long id;
+	Long merchantId;
 	private String merchantName;
 	private String merchantDescription;
 	
@@ -17,18 +17,18 @@ public class Merchant {
 	}
 
 	
-	public Merchant(Long id, String merchantName, String merchantDescription) {
-		this.id = id;
+	public Merchant(Long merchantId, String merchantName, String merchantDescription) {
+		this.merchantId = merchantId;
 		this.merchantName = merchantName;
 		this.merchantDescription = merchantDescription;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getMerchantId() {
+		return merchantId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setMerchantId(Long merchantId) {
+		this.merchantId = merchantId;
 	}
 
 	public String getMerchantName() {

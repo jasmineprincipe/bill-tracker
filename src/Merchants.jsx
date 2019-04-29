@@ -43,8 +43,8 @@ class Merchants extends Component {
     })
   }
 
-  deleteMerchant(id) {
-    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + id)
+  deleteMerchant(merchantId) {
+    axios.delete('http://localhost:8080/billtracker/rest/merchants/' + merchantId)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -99,7 +99,7 @@ class Merchants extends Component {
                       <button type='button' className='edit-button'
                         onClick={() => this.getBillsByMerchant(merchant.merchantName)} >View Bills</button>
                       <button type='button' className='delete-button'
-                        onClick={() => this.deleteMerchant(merchant.id)}>Delete</button>
+                        onClick={() => this.deleteMerchant(merchant.merchantId)}>Delete</button>
                       </th>
                     </tr>
                   )

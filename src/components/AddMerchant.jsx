@@ -31,7 +31,7 @@ class AddMerchant extends Component {
     e.preventDefault();
 
     let merchant = {
-      id: this.state.id,
+      merchantId: this.state.merchantId,
       merchantName: this.state.merchantName,
       merchantDescription: this.state.merchantDescription
     }

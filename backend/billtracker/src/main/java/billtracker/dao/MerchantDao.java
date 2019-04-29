@@ -7,7 +7,7 @@ public interface MerchantDao {
 	
 	public List<Merchant> findAll();
 	
-	public Merchant find(Long id);
+	public Merchant find(Long merchantId);
 	
 	public List<Merchant> findByName(String merchantName);
 	
@@ -15,6 +15,6 @@ public interface MerchantDao {
 	
 	public void update(Merchant merchant);
 	
-	public void delete(Long id);
+	public void delete(Long merchantId);
 
 }

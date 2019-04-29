@@ -40,7 +40,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 	private void init() {
 		dataSource = new JDBCDataSource();
-		dataSource.setDatabase("jdbc:hsqldb:mem:MERCHANT");
+		dataSource.setDatabase("jdbc:hsqldb:mem:BILLTRACKER");
 		dataSource.setUser("username");
 		dataSource.setPassword("password");
 
@@ -54,7 +54,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 	private void createMerchantTable() {
 		String createSql = "CREATE TABLE MERCHANTS " 
-				+ "(id INTEGER IDENTITY PRIMARY KEY, " 
+				+ "(merchant_id INTEGER IDENTITY PRIMARY KEY, " 
 				+ " merchant_name VARCHAR(255) UNIQUE NOT NULL, "
 				+ " merchant_description VARCHAR(255))";
 
@@ -85,20 +85,20 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 	}
 
 	@Override
-	public Merchant find(Long id) {
+	public Merchant find(Long merchantId) {
 
 		Merchant merchant = null;
 
-		if (id != null) {
-			String sql = "SELECT id, merchant_name, merchant_description FROM MERCHANTS WHERE id = ?";
+		if (merchantId != null) {
+			String sql = "SELECT merchant_id, merchant_name, merchant_description FROM MERCHANTS WHERE merchant_id = ?";
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-				ps.setInt(1, id.intValue());
+				ps.setInt(1, merchantId.intValue());
 				ResultSet results = ps.executeQuery();
 
 				if (results.next()) {
 					merchant = new Merchant(Long.valueOf(
-							results.getInt("id")), 
+							results.getInt("merchant_id")), 
 							results.getString("merchant_name"),
 							results.getString("merchant_description"));
 				}
@@ -116,7 +116,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 	public List<Merchant> findByName(String merchantName) {
 		List<Merchant> merchants = new ArrayList<>();
 
-		String sql = "SELECT id, merchant_name, merchant_description FROM MERCHANTS WHERE merchant_name LIKE ?";
+		String sql = "SELECT merchant_id, merchant_name, merchant_description FROM MERCHANTS WHERE merchant_name LIKE ?";
 
 		try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -126,7 +126,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			
 			while (results.next()) {
 				Merchant merchant = new Merchant(Long.valueOf(
-						results.getInt("id")), 
+						results.getInt("merchant_id")), 
 						results.getString("merchant_name"),
 						results.getString("merchant_description"));
 				merchants.add(merchant);
@@ -172,13 +172,13 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 	@Override
 	public void update(Merchant merchant) {
-		String updateSql = "UPDATE MERCHANTS SET merchant_name = ?, merchant_description = ? WHERE id = ?";
+		String updateSql = "UPDATE MERCHANTS SET merchant_name = ?, merchant_description = ? WHERE merchant_id = ?";
 
 		try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(updateSql)) {
 
 			ps.setString(1, merchant.getMerchantName());
 			ps.setString(2, merchant.getMerchantDescription());
-			ps.setLong(3, merchant.getId());
+			ps.setLong(3, merchant.getMerchantId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -188,12 +188,12 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 	}
 
 	@Override
-	public void delete(Long id) {
-		String updateSql = "DELETE FROM MERCHANTS WHERE id = ?";
+	public void delete(Long merchantId) {
+		String updateSql = "DELETE FROM MERCHANTS WHERE merchant_id = ?";
 
 		try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(updateSql)) {
 
-			ps.setLong(1, id);
+			ps.setLong(1, merchantId);
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

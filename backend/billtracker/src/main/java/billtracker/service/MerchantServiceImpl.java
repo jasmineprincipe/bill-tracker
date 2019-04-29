@@ -21,8 +21,8 @@ public class MerchantServiceImpl implements MerchantService{
 	}
 
 	@Override
-	public Merchant find(Long id) {
-		return merchantDao.find(id);
+	public Merchant find(Long merchantId) {
+		return merchantDao.find(merchantId);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class MerchantServiceImpl implements MerchantService{
 	@Override
 	public void upsert(Merchant merchant) {
 		if (validate(merchant)) {
-			if(merchant.getId() != null && merchant.getId() >= 0) {
+			if(merchant.getMerchantId() != null && merchant.getMerchantId() >= 0) {
 				merchantDao.update(merchant);
 			} else {
 				merchantDao.add(merchant);
@@ -53,8 +53,8 @@ public class MerchantServiceImpl implements MerchantService{
 	}
 
 	@Override
-	public void delete(Long id) {
-		merchantDao.delete(id);
+	public void delete(Long merchantId) {
+		merchantDao.delete(merchantId);
 	}
 	
 	private boolean validate(Merchant merchant) {
