@@ -1,5 +1,6 @@
 import {getMerchantListURL} from './service-url';
 import {getBillListURL} from './service-url';
+import {getCurrentBillListURL} from './service-url';
 import axios from 'axios';
 
 const getMerchantList = () => {
@@ -16,4 +17,12 @@ const getBillList = () => {
 
 export {
     getBillList
+}
+
+const getCurrentBillList = () => {
+    return axios.get(getCurrentBillListURL);
+}
+
+export {
+    getCurrentBillList
 }

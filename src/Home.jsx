@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { getMerchantList } from './util/service-helper'
-import { getBillList } from './util/service-helper'
-import axios from 'axios'
+import { getCurrentBillList } from './util/service-helper'
  
 class Home extends Component {
 
@@ -10,7 +8,6 @@ class Home extends Component {
 
     this.state = {
       billsList: [],
-      merchantsList: [],
       showPopup: false
     };
   }
@@ -23,39 +20,21 @@ class Home extends Component {
 
   // LIFE CYCLE METHODS
   componentDidMount() {
-    this.getBills();
-    this.getMerchants();
+    this.getCurrentBills();
   }
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
   // SERVICE METHODS
-  getBills() {
-    getBillList().then(res => {
+  getCurrentBills() {
+    getCurrentBillList().then(res => {
       this.setState({ billsList: res.data });
-    })
-  }
-  getMerchants() {
-    getMerchantList().then(res => {
-        this.setState({ merchantsList: res.data });
-    })
-  }
-
-  // GET BILLS FILTERED BY MERCHANT FROM DATABASE
-  getBillsByMerchant(merchantName) {
-  axios.get('http://localhost:8080/billtracker/rest/bills/?merchantName=' + merchantName)
-    .then(res => {
-      this.setState({ billsList: res.data })
-      console.log(res);
-      console.log(res.data);
     })
   }
 
   render() {
     return (
-
-      // FILTER BILLS BY MERCHANT
       <div>
       <div className="content-header"><h2>Home</h2>
       <p>The following bills are due this month: </p></div>
