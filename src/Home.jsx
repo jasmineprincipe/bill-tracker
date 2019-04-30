@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { getCurrentBillList } from './util/service-helper'
- 
+import moment from "moment";
+
 class Home extends Component {
 
   constructor(props) {
@@ -36,45 +37,46 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <div className="content-header"><h2>Home</h2>
-      <p>The following bills are due this month: </p></div>
-      <div className="page-container">
-      <Fragment>
-        <table className='home-bill-table'>
-          <thead>
-          </thead>
-          <tbody>
-            <tr className='bill-table-row'>
-              <th className='bill-table-header'>Merchant</th>
-              <th className='bill-table-header'>Amount</th>
-              <th className='bill-table-header'>Serial Number</th>
-              <th className='bill-table-header'>Bill Date</th>
-              <th className='bill-table-header'>Due Date</th>
-              <th className='bill-table-header'></th>
-            </tr>
-            {
-              // DISPLAY ADDED BILLS TO TABLE
-              this.state.billsList.map((bill) => {
-                return (
-                  <tr className='bill-table-row'>
-                    <th className='bill-table-cell'>{bill.merchantName}</th>
-                    <th className='bill-table-cell'>{bill.amount}</th>
-                    <th className='bill-table-cell'>{bill.serialNumber}</th>
-                    <th className='bill-table-cell'>{bill.billDate}</th>
-                    <th className='bill-table-cell'>{bill.dueDate}</th>
-                    <th className='bill-table-cell'></th>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </Fragment>
-      <br />
+        <div className="content-header"><h2>Home</h2>
+          <p>The following bills are due this month: </p></div>
+        <div className="page-container">
+          <Fragment>
+            <table className='home-bill-table'>
+              <thead>
+              </thead>
+              <tbody>
+                <tr className='bill-table-row'>
+                  <th className='bill-table-header'>Merchant</th>
+                  <th className='bill-table-header'>Amount</th>
+                  <th className='bill-table-header'>Serial Number</th>
+                  <th className='bill-table-header'>Bill Date</th>
+                  <th className='bill-table-header'>Due Date</th>
+                  <th className='bill-table-header'></th>
+                </tr>
+                {
+                  // DISPLAY ADDED BILLS TO TABLE
+                  this.state.billsList.map((bill) => {
+                    return (
+                      <tr className='bill-table-row'>
+                        <th className='bill-table-cell'>{bill.merchantName}</th>
+                        <th className='bill-table-cell'>{new Intl.NumberFormat('ph-PH', { 
+                          style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
+                        <th className='bill-table-cell'>{bill.serialNumber}</th>
+                        <th className='bill-table-cell'>{moment(bill.billDate).format("D MMM YYYY")}</th>
+                        <th className='bill-table-cell'>{moment(bill.dueDate).format("D MMM YYYY")}</th>
+                        <th className='bill-table-cell'></th>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+          </Fragment>
+          <br />
+        </div>
       </div>
-    </div>
     );
   }
 }
- 
+
 export default Home;

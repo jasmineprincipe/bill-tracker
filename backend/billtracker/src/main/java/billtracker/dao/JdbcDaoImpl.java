@@ -243,7 +243,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 			String sql = "SELECT * FROM BILLS WHERE"
 					+ " EXTRACT(MONTH FROM due_date) = EXTRACT(MONTH FROM current_date) AND "
-					+ " EXTRACT(YEAR FROM current_date) = EXTRACT(YEAR FROM current_date)";
+					+ " EXTRACT(YEAR FROM due_date) = EXTRACT(YEAR FROM current_date)";
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 

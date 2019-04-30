@@ -3,6 +3,7 @@ import { getMerchantList } from './util/service-helper'
 import { getBillList } from './util/service-helper'
 import AddBill from './components/AddBill.jsx';
 import axios from 'axios'
+import moment from 'moment'
  
 class Bills extends Component {
 
@@ -115,10 +116,11 @@ class Bills extends Component {
                 return (
                   <tr className='bill-table-row'>
                     <th className='bill-table-cell'>{bill.merchantName}</th>
-                    <th className='bill-table-cell'>{bill.amount}</th>
+                    <th className='bill-table-cell'>{new Intl.NumberFormat('ph-PH', { 
+                          style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
                     <th className='bill-table-cell'>{bill.serialNumber}</th>
-                    <th className='bill-table-cell'>{bill.billDate}</th>
-                    <th className='bill-table-cell'>{bill.dueDate}</th>
+                    <th className='bill-table-cell'>{moment(bill.billDate).format("D MMM YYYY")}</th>
+                    <th className='bill-table-cell'>{moment(bill.dueDate).format("D MMM YYYY")}</th>
                     <th className='bill-table-cell'>
                     <button type='button' className='edit-button'>Edit</button>
                     <button type='button' className="delete-button" 
