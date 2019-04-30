@@ -8,6 +8,8 @@ public interface BillDao {
 	
 	public List<Bill> findAllBills();
 	
+	public List<Bill> findCurrentBills();
+	
 	public Bill findBill(Long billId);
 	
 	public List<Bill> findByMerchant(String merchantName);

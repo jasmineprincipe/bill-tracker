@@ -35,24 +35,17 @@ public class BillsController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Bill> getBills(
 			@QueryParam("merchantName") String merchantName,
-			@QueryParam("serialNumber") String serialNumber,
 			@QueryParam("dueDate") String dueDate){
 			try {
 				List<Bill> bills;
-	
-//				if (StringUtils.isAllBlank(merchantName, serialNumber)) {
-//					bills = billService.findAllBills();
-//				} else {
-//					bills = billService.findByMerchant(merchantName);
-//				}
 			
-			if(StringUtils.isNotBlank(merchantName)) {
-				bills = billService.findByMerchant(merchantName);
-			} else if (StringUtils.isBlank(merchantName) && StringUtils.isNotBlank(dueDate)) {
-				bills = billService.findByMonth(dueDate);
-			} else {
-				bills = billService.findAllBills();
-			}
+				if(StringUtils.isNotBlank(merchantName)) {
+					bills = billService.findByMerchant(merchantName);
+				} else if (StringUtils.isBlank(merchantName) && StringUtils.isNotBlank(dueDate)) {
+					bills = billService.findByMonth(dueDate);
+				} else {
+					bills = billService.findAllBills();
+				}
 		
 			return bills;
 
@@ -75,40 +68,19 @@ public class BillsController {
 		}
 	}
 	
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<Bill> getCurrentBills(
-//			@QueryParam("dueDate") String dueDate) {
-//
-//		try {
-//			List<Bill> currentbills;
-//
-//			if (StringUtils.isAllBlank(dueDate)) {
-//				currentbills = billService.findAllBills();
-//			} else {
-//				currentbills = billService.findByMonth(dueDate);
-//			}
-//			
-//			return currentbills;
-//
-//		} catch (Exception e) {
-//			throw new WebApplicationException(e);
-//		}
-//	}
-//	
-//	@GET
-//	@Path("/current/{bill_id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Bill getCurrentBill(@PathParam("bill_id") String billId) {
-//
-//		try {
-//			Long longId = Long.parseLong(billId);
-//			Bill bill = billService.findBill(longId);
-//			return bill;
-//		} catch (Exception e) {
-//			throw new WebApplicationException(e);
-//		}
-//	}
+	@GET
+	@Path ("/current")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Bill> getCurrentBills(){
+			try {
+				List<Bill> bills;
+					bills = billService.findCurrentBills();
+					return bills;
+				}
+			catch (Exception e) {
+			throw new WebApplicationException(e);
+		}
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -19,6 +19,11 @@ public class BillServiceImpl implements BillService{
 	public List<Bill> findAllBills() {
 		return billDao.findAllBills();
 	}
+	
+	@Override
+	public List<Bill> findCurrentBills() {
+		return billDao.findCurrentBills();
+	}
 
 	@Override
 	public Bill findBill(Long billId) {

@@ -236,6 +236,37 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 			return findByMerchant(null);
 		}
+		
+		@Override
+		public List<Bill> findCurrentBills() {
+			List<Bill> bills = new ArrayList<>();
+
+			String sql = "SELECT * FROM BILLS WHERE"
+					+ " EXTRACT(MONTH FROM due_date) = EXTRACT(MONTH FROM current_date) AND "
+					+ " EXTRACT(YEAR FROM current_date) = EXTRACT(YEAR FROM current_date)";
+			
+			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+				ResultSet results = ps.executeQuery();
+
+				while (results.next()) {
+					Bill bill = new Bill(Long.valueOf
+							(results.getInt("bill_id")), 
+							results.getString("merchant_name"),
+							results.getBigDecimal("amount"),
+							results.getString("serial_number"),
+							results.getDate("bill_date"),
+							results.getDate("due_date"));
+					bills.add(bill);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+
+			return bills;
+		}
 
 		@Override
 		public Bill findBill(Long billId) {
@@ -243,7 +274,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			Bill bill = null;
 
 			if (billId != null) {
-				String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date WHERE bill_id = ?";
+				String sql = "SELECT * WHERE bill_id = ?";
 				try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
 					ps.setInt(1, billId.intValue());
@@ -272,7 +303,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		public List<Bill> findByMerchant(String merchantName) {
 			List<Bill> bills = new ArrayList<>();
 
-			String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date FROM BILLS WHERE merchant_name LIKE ?";
+			String sql = "SELECT * FROM BILLS WHERE merchant_name LIKE ?";
 
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -303,7 +334,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		public List<Bill> findByMonth(String dueDate) {
 			List<Bill> bills = new ArrayList<>();
 
-			String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date FROM BILLS WHERE due_date LIKE ?";
+			String sql = "SELECT * FROM BILLS WHERE due_date LIKE ?";
 //					+ " EXTRACT(MONTH FROM due_date) = EXTRACT(MONTH FROM current_date) AND "
 //					+ " EXTRACT(YEAR FROM current_date) = EXTRACT(YEAR FROM current_date)";
 			
