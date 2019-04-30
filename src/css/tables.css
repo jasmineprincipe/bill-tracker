@@ -101,3 +101,14 @@ form {
 .home-bill-table {
   width: 600px;
 }
+
+.amount-container {
+  float: right;
+  margin-top: -100px;
+  margin-right: 50px;
+}
+.amount-due {
+  margin-top:-20px;
+  font-weight: bold;
+  font-size: 30px;
+}

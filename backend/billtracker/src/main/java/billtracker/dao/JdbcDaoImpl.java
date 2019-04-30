@@ -335,8 +335,6 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			List<Bill> bills = new ArrayList<>();
 
 			String sql = "SELECT * FROM BILLS WHERE due_date LIKE ?";
-//					+ " EXTRACT(MONTH FROM due_date) = EXTRACT(MONTH FROM current_date) AND "
-//					+ " EXTRACT(YEAR FROM current_date) = EXTRACT(YEAR FROM current_date)";
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
