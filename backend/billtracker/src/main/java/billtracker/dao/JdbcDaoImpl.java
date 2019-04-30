@@ -301,11 +301,11 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		
 		@Override
 		public List<Bill> findByMonth(String dueDate) {
-			List<Bill> currentbills = new ArrayList<>();
+			List<Bill> bills = new ArrayList<>();
 
-			String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date FROM BILLS WHERE"
-					+ " DATEPART(m, due_date) = MONTH(CURDATE()) AND "
-					+ " DATEPART(yyyy, due_date) = YEAR(CURDATE())";
+			String sql = "SELECT bill_id, merchant_name, amount, serial_number, bill_date, due_date FROM BILLS WHERE due_date LIKE ?";
+//					+ " EXTRACT(MONTH FROM due_date) = EXTRACT(MONTH FROM current_date) AND "
+//					+ " EXTRACT(YEAR FROM current_date) = EXTRACT(YEAR FROM current_date)";
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -321,7 +321,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 							results.getString("serial_number"),
 							results.getDate("bill_date"),
 							results.getDate("due_date"));
-					currentbills.add(bill);
+					bills.add(bill);
 				}
 
 			} catch (SQLException e) {
@@ -329,7 +329,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				throw new RuntimeException(e);
 			}
 
-			return currentbills;
+			return bills;
 		}
 
 		@Override
