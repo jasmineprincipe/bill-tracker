@@ -51,9 +51,9 @@ class Home extends Component {
           <p>The following bills are due this month: </p>
         </div>
         <div className="amount-container">
-             <p className="amount-label">Total amount due</p>
              <p className="amount-due"> {new Intl.NumberFormat('ph-PH', 
                 { style: 'currency', currency: 'Php' }).format(this.getAmountDue())}</p>
+              <p className="amount-label">{moment().format('MMMM YYYY')}</p>
           </div>
         <div className="page-container">
           <Fragment>
@@ -73,11 +73,11 @@ class Home extends Component {
                   this.state.billsList.map((bill) => {
                     return (
                       <tr className='bill-table-row'>
-                        <th className='bill-table-cell'>{bill.merchantName}</th>     
-                        <th className='bill-table-cell'>{bill.serialNumber}</th>
-                        <th className='bill-table-cell'>{moment(bill.billDate).format("D MMM YYYY")}</th>
-                        <th className='bill-table-cell'>{moment(bill.dueDate).format("D MMM YYYY")}</th>
-                        <th className='bill-table-cell'>{new Intl.NumberFormat('ph-PH', 
+                        <th className='text-cell'>{bill.merchantName}</th>     
+                        <th className='text-cell'>{bill.serialNumber}</th>
+                        <th className='date-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
+                        <th className='date-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
+                        <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', 
                          { style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
                       </tr>
                     )

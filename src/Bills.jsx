@@ -115,13 +115,13 @@ class Bills extends Component {
               this.state.billsList.map((bill) => {
                 return (
                   <tr className='bill-table-row'>
-                    <th className='bill-table-cell'>{bill.merchantName}</th>
-                    <th className='bill-table-cell'>{new Intl.NumberFormat('ph-PH', { 
+                    <th className='text-cell'>{bill.merchantName}</th>
+                    <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', { 
                           style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
-                    <th className='bill-table-cell'>{bill.serialNumber}</th>
-                    <th className='bill-table-cell'>{moment(bill.billDate).format("D MMM YYYY")}</th>
-                    <th className='bill-table-cell'>{moment(bill.dueDate).format("D MMM YYYY")}</th>
-                    <th className='bill-table-cell'>
+                    <th className='text-cell'>{bill.serialNumber}</th>
+                    <th className='date-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
+                    <th className='date-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
+                    <th className='text-cell'>
                     <button type='button' className='edit-button'>Edit</button>
                     <button type='button' className="delete-button" 
                     onClick={() => this.deleteBill(bill.billId)}>Delete</button></th>

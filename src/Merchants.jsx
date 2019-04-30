@@ -80,9 +80,9 @@ class Merchants extends Component {
                 this.state.merchantsList.map((merchant) => {
                   return (
                     <tr className='merchant-table-row'>
-                      <th className='merchant-table-cell'>{merchant.merchantName}</th>
-                      <th className='merchant-table-cell'>{merchant.merchantDescription}</th>
-                      <th className='merchant-table-cell'>
+                      <th className='text-cell'>{merchant.merchantName}</th>
+                      <th className='text-cell'>{merchant.merchantDescription}</th>
+                      <th className='text-cell'>
                       <button type='button' className='edit-button'>Edit</button>
                       <button type='button' className='delete-button'
                         onClick={() => this.deleteMerchant(merchant.merchantId)}>Delete</button>

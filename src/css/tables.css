@@ -1,5 +1,5 @@
 table, td, th {
-  padding: 3px;
+  padding: 5px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
@@ -17,9 +17,19 @@ table {
 th {
   padding-left: 20px;
   height: 10px;
-  text-align: left;
   background-color: #ddd;
   color: #17252A;
+}
+
+.text-cell, .date-cell {
+  text-align: left;
+  font-weight: normal;
+}
+
+.amount-cell {
+  width: 20px;
+  text-align: right;
+  font-weight: normal;
 }
 
 form {
@@ -36,10 +46,6 @@ form {
 .merchant-table-header, .bill-table-header {
   padding-top: 15px;
   font-weight: bold;
-}
-
-.merchant-table-cell, .bill-table-cell {
-  font-weight: normal;
 }
 
 .bill-filter-container {
@@ -104,11 +110,20 @@ form {
 
 .amount-container {
   float: right;
-  margin-top: -100px;
+  margin-top: -120px;
   margin-right: 50px;
+  text-align: right;
+  color: rgb(146, 146, 146);
+  font-weight: bold;
+  font-size: 20px;
 }
 .amount-due {
-  margin-top:-20px;
+  margin-bottom:-21px;
   font-weight: bold;
   font-size: 30px;
+  color: #2B7A78;
+}
+
+.merchant-table {
+  width: 500px;
 }
