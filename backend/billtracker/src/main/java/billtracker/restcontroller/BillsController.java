@@ -35,14 +35,15 @@ public class BillsController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Bill> getBills(
 			@QueryParam("merchantName") String merchantName,
-			@QueryParam("dueDate") String dueDate){
+			@QueryParam("billMonth") String billMonth,
+			@QueryParam("billYear") String billYear){
 			try {
 				List<Bill> bills;
 			
 				if(StringUtils.isNotBlank(merchantName)) {
 					bills = billService.findByMerchant(merchantName);
-				} else if (StringUtils.isBlank(merchantName) && StringUtils.isNotBlank(dueDate)) {
-					bills = billService.findByMonth(dueDate);
+				} else if (StringUtils.isBlank(merchantName) && StringUtils.isNoneBlank(billMonth, billYear)) {
+					bills = billService.findByMonth(billMonth, billYear);
 				} else {
 					bills = billService.findAllBills();
 				}
@@ -81,6 +82,21 @@ public class BillsController {
 			throw new WebApplicationException(e);
 		}
 	}
+	
+//	@GET
+//	@Path ("/history")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Bill> getMonthlyBills(){
+//			try {
+//				List<Bill> bills;
+//					bills = billService.findMonthlyBills();
+//					return bills;
+//				}
+//			catch (Exception e) {
+//			throw new WebApplicationException(e);
+//		}
+//	}
+
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -10,11 +10,13 @@ public interface BillService {
 	
 	public List<Bill> findCurrentBills();
 	
+//	public List<Bill> findMonthlyBills();
+	
 	public Bill findBill(Long billId);
 	
 	public List<Bill> findByMerchant(String merchantName);
 	
-	public List<Bill> findByMonth(String dueDate);
+	public List<Bill> findByMonth(String billMonth, String billYear);
 	
 	public void add(Bill bill);
 	

@@ -5,6 +5,7 @@ import './css/tables.css';
 import './css/merchant_form.css';
 import './css/bill_form.css';
 import './css/App.css';
+import "react-datepicker/dist/react-datepicker.css";
 import Header from './components/header.jsx';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import Home from "./Home";

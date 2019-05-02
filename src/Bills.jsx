@@ -122,7 +122,6 @@ class Bills extends Component {
                     <th className='date-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
                     <th className='date-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
                     <th className='text-cell'>
-                    <button type='button' className='edit-button'>Edit</button>
                     <button type='button' className="delete-button" 
                     onClick={() => this.deleteBill(bill.billId)}>Delete</button></th>
                   </tr>

@@ -83,7 +83,6 @@ class Merchants extends Component {
                       <th className='text-cell'>{merchant.merchantName}</th>
                       <th className='text-cell'>{merchant.merchantDescription}</th>
                       <th className='text-cell'>
-                      <button type='button' className='edit-button'>Edit</button>
                       <button type='button' className='delete-button'
                         onClick={() => this.deleteMerchant(merchant.merchantId)}>Delete</button>
                       </th>
@@ -103,4 +102,3 @@ class Merchants extends Component {
 }
 
 export default Merchants;
-

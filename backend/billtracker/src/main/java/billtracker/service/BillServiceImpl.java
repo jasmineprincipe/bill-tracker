@@ -24,6 +24,11 @@ public class BillServiceImpl implements BillService{
 	public List<Bill> findCurrentBills() {
 		return billDao.findCurrentBills();
 	}
+	
+//	@Override
+//	public List<Bill> findMonthlyBills() {
+//		return billDao.findMonthlyBills();
+//	}
 
 	@Override
 	public Bill findBill(Long billId) {
@@ -36,8 +41,8 @@ public class BillServiceImpl implements BillService{
 	}
 	
 	@Override
-	public List<Bill> findByMonth(String dueDate) {
-		return billDao.findByMonth(dueDate);
+	public List<Bill> findByMonth(String billMonth, String billYear) {
+		return billDao.findByMonth(billMonth, billYear);
 	}
 
 	@Override

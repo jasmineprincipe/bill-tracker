@@ -237,6 +237,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			return findByMerchant(null);
 		}
 		
+		//FIND BILLS FROM CURRENT MONTH
 		@Override
 		public List<Bill> findCurrentBills() {
 			List<Bill> bills = new ArrayList<>();
@@ -268,6 +269,39 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			return bills;
 		}
 
+		
+//		@Override
+//		public List<Bill> findMonthlyBills() {
+//			List<Bill> bills = new ArrayList<>();
+//
+//			String sql = "SELECT * FROM BILLS WHERE"
+//					+ " EXTRACT(MONTH FROM due_date) = 1 "
+//					+ " EXTRACT(YEAR FROM due_date) = 2019";
+//			
+//			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+//
+//				ResultSet results = ps.executeQuery();
+//
+//				while (results.next()) {
+//					Bill bill = new Bill(Long.valueOf
+//							(results.getInt("bill_id")), 
+//							results.getString("merchant_name"),
+//							results.getBigDecimal("amount"),
+//							results.getString("serial_number"),
+//							results.getDate("bill_date"),
+//							results.getDate("due_date"));
+//					bills.add(bill);
+//				}
+//
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				throw new RuntimeException(e);
+//			}
+//
+//			return bills;
+//		}
+
+		
 		@Override
 		public Bill findBill(Long billId) {
 
@@ -331,14 +365,17 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		}
 		
 		@Override
-		public List<Bill> findByMonth(String dueDate) {
+		public List<Bill> findByMonth(String billMonth, String billYear) {
 			List<Bill> bills = new ArrayList<>();
 
-			String sql = "SELECT * FROM BILLS WHERE due_date LIKE ?";
+			String sql = "SELECT * FROM BILLS WHERE"
+					+ " EXTRACT(MONTH FROM due_date) = ? AND "
+					+ " EXTRACT(YEAR FROM due_date) = ? ";
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-				ps.setString(1, createSearchValue(dueDate));
+				ps.setString(1, createSearchValue(billMonth));
+				ps.setString(2, createSearchValue(billYear));
 
 				ResultSet results = ps.executeQuery();
 
