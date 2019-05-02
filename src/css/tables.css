@@ -109,9 +109,9 @@ form {
 }
 
 .amount-container {
-  float: right;
+  position: absolute;
   margin-top: -120px;
-  margin-right: 50px;
+  margin-left: 390px;
   text-align: right;
   color: rgb(146, 146, 146);
   font-weight: bold;
@@ -126,4 +126,17 @@ form {
 
 .merchant-table {
   width: 500px;
+}
+
+.amount-history-container {
+  margin-top: -50px;
+  margin-bottom: 20px;
+  text-align: right;
+  color: rgb(146, 146, 146);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.date-picker {
+  padding-bottom: 200px;
 }

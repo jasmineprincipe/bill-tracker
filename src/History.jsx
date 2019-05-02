@@ -11,17 +11,10 @@ class History extends Component {
 
     this.state = {
       billsList: [],
-      merchantsList: [],
-      showPopup: false,
-       startDate: new Date()
+      startDate: new Date(),
+      amountDue: ''
     };
-     this.handleChange = this.handleChange.bind(this);
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
+    this.handleChange = this.handleChange.bind(this);
   }
 
   // LIFE CYCLE METHODS
@@ -39,17 +32,10 @@ class History extends Component {
     })
   }
 
-  // handleChangeInfo = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  // }
-
   handleChange(date) {
     this.setState({
       startDate: date
     });
-    // this.getBillsByMonth()
   }
 
   // GET BILLS FILTERED BY MONTH AND YEAR FROM DATABASE
@@ -68,33 +54,42 @@ class History extends Component {
       })
   }
 
+  // COMPUTE TOTAL AMOUNT DUE FOR THE MONTH
+  getAmountDue(){
+    let amountDue = 0;
+    for (let i = 0; i < this.state.billsList.length; i++) {
+      amountDue += this.state.billsList[i].amount;
+    }
+    return amountDue;
+  }
+
   render() {
 
     return (
       <div>
         <div className="bill-filter-container">
-          <label className="bill-filter-label">Filter by Month </label>
+        <div className="amount-history-container">
+          <p className="amount-due"> {new Intl.NumberFormat('ph-PH', 
+            { style: 'currency', currency: 'Php' }).format(this.getAmountDue())}</p>
+        </div>
+          {/* <label className="bill-filter-label">Filter by Month </label> */}
           {/* <input name="billMonth" value={this.state.billMonth} onChange={this.handleChangeInfo}/> 
           <input name="billYear" value={this.state.billYear} onChange={this.handleChangeInfo} /> 
           <button className="btn btn-success" 
             onClick={this.getBillsByMonth}>View Bills </button>      */}
-          <form onSubmit={this.getBillsByMonth}>
-              <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-                name="startDate"
-                dateFormat="MMMM YYYY"
-                showMonthYearPicker
-              />
-              <button className="btn btn-success">View Bills</button>
-              {/* <DatePicker
-              value={this.history}
-              selected={this.state.startDate}
-              onChange={this.handleChange}
-              dateFormat="MMMM yyyy"
-              showMonthYearPicker
-            /> */}
-            </form>
+          {/* <form onSubmit={this.getBillsByMonth}> */}
+              <div className='date-picker'>
+                <DatePicker 
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+                  name="startDate"
+                  dateFormat="MMMM YYYY"
+                  showMonthYearPicker
+                />
+                <button onClick={this.getBillsByMonth}>View Bills</button>
+              </div>
+              
+            {/* </form> */}
             </div>
             <div className="content-header"><h2>History</h2></div>
             <div className="page-container">
