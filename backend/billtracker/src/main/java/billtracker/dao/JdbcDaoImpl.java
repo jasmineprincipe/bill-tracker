@@ -1,12 +1,18 @@
 package billtracker.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -223,13 +229,25 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				throw new RuntimeException(e);
 			}
 		}
-
+		
+		
 		private void insertInitBills() {
 
-			add(new Bill("Meralco", null, "123ABC", null, null));
-			add(new Bill("Maynilad", null, "961ATH", null, null));
-			add(new Bill("Meralco", null, "430ABC", null, null));
-			add(new Bill("Meralco", null, "671ATH", null, null));
+			BigDecimal dec1 = new BigDecimal("1500.00");
+			BigDecimal dec2 = new BigDecimal("2150.75");
+			BigDecimal dec3 = new BigDecimal("999");
+			BigDecimal dec4 = new BigDecimal("649.50");
+
+//			Date date1 = (Date) new GregorianCalendar(2019, Calendar.MAY, 1).getTime();
+//			Date date2 = (Date) new GregorianCalendar(2019, Calendar.MAY, 30).getTime();
+//			Date date3 = (Date) new GregorianCalendar(2019, Calendar.MAY, 03).getTime();
+//			Date date4 = (Date) new GregorianCalendar(2019, Calendar.MAY, 22).getTime();
+
+			
+			add(new Bill("Meralco", dec1, "123ABC", null, null));
+			add(new Bill("Maynilad", dec2, "961ATH", null, null));
+			add(new Bill("Meralco", dec3, "430ABC", null, null));
+			add(new Bill("Meralco", dec4, "671ATH", null, null));
 		}
 
 		@Override
@@ -275,10 +293,10 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		public List<Bill> findBillHistory() {
 			List<Bill> bills = new ArrayList<>();
 			
-			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date)) Duration,"
+			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) Duration,"
 					+ " SUM(amount) TotalAmount "
 					+ " FROM BILLS"
-					+ " GROUP BY EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date))";
+					+ " GROUP BY EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date))";
 		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))";
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -288,14 +306,8 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				int columnsNumber = rsmd.getColumnCount();
 				
 				while (results.next()) {
-//					Bill bill = new Bill(Long.valueOf
-//							(results.getInt("bill_id")), 
-//							results.getString("merchant_name"),
-//							results.getBigDecimal("amount"),
-//							results.getString("serial_number"),
-//							results.getDate("bill_date"),
-//							results.getDate("due_date"));
-//					bills.add(bill);
+							results.getBigDecimal("DURATION");
+							results.getBigDecimal("TOTALAMOUNT");
 					
 					for (int i = 1; i <= columnsNumber; i++) {
 				           if (i > 1) System.out.print(",  ");
