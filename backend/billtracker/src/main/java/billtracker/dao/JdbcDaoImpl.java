@@ -3,6 +3,7 @@ package billtracker.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -274,7 +275,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		public List<Bill> findBillHistory() {
 			List<Bill> bills = new ArrayList<>();
 			
-			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date)) Month,"
+			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date)) Duration,"
 					+ " SUM(amount) TotalAmount "
 					+ " FROM BILLS"
 					+ " GROUP BY EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date))";
@@ -283,7 +284,9 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
 				ResultSet results = ps.executeQuery();
-
+				ResultSetMetaData rsmd = results.getMetaData();
+				int columnsNumber = rsmd.getColumnCount();
+				
 				while (results.next()) {
 //					Bill bill = new Bill(Long.valueOf
 //							(results.getInt("bill_id")), 
@@ -294,8 +297,12 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 //							results.getDate("due_date"));
 //					bills.add(bill);
 					
-					results.getString(1);
-					results.getInt(2);
+					for (int i = 1; i <= columnsNumber; i++) {
+				           if (i > 1) System.out.print(",  ");
+				           String columnValue = results.getString(i);
+				           System.out.print(columnValue + " " + rsmd.getColumnName(i));
+					}
+					System.out.println("");
 				}
 
 			} catch (SQLException e) {
