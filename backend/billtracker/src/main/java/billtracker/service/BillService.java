@@ -10,7 +10,7 @@ public interface BillService {
 	
 	public List<Bill> findCurrentBills();
 	
-//	public List<Bill> findMonthlyBills();
+	public List<Bill> findBillHistory();
 	
 	public Bill findBill(Long billId);
 	

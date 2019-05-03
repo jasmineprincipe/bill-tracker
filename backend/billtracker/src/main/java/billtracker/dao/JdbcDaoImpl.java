@@ -270,19 +270,21 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 		}
 
 		
-//		@Override
-//		public List<Bill> findMonthlyBills() {
-//			List<Bill> bills = new ArrayList<>();
-//
-//			String sql = "SELECT * FROM BILLS WHERE"
-//					+ " EXTRACT(MONTH FROM due_date) = 1 "
-//					+ " EXTRACT(YEAR FROM due_date) = 2019";
-//			
-//			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-//
-//				ResultSet results = ps.executeQuery();
-//
-//				while (results.next()) {
+		@Override
+		public List<Bill> findBillHistory() {
+			List<Bill> bills = new ArrayList<>();
+			
+			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date)) Month,"
+					+ " SUM(amount) TotalAmount "
+					+ " FROM BILLS"
+					+ " GROUP BY EXTRACT(MONTH FROM DATEADD('MONTH', -1, due_date))";
+		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))";
+			
+			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+				ResultSet results = ps.executeQuery();
+
+				while (results.next()) {
 //					Bill bill = new Bill(Long.valueOf
 //							(results.getInt("bill_id")), 
 //							results.getString("merchant_name"),
@@ -291,15 +293,18 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 //							results.getDate("bill_date"),
 //							results.getDate("due_date"));
 //					bills.add(bill);
-//				}
-//
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//				throw new RuntimeException(e);
-//			}
-//
-//			return bills;
-//		}
+					
+					results.getString(1);
+					results.getInt(2);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+
+			return bills;
+		}
 
 		
 		@Override

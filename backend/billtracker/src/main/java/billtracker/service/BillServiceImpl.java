@@ -25,10 +25,10 @@ public class BillServiceImpl implements BillService{
 		return billDao.findCurrentBills();
 	}
 	
-//	@Override
-//	public List<Bill> findMonthlyBills() {
-//		return billDao.findMonthlyBills();
-//	}
+	@Override
+	public List<Bill> findBillHistory() {
+		return billDao.findBillHistory();
+	}
 
 	@Override
 	public Bill findBill(Long billId) {

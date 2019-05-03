@@ -83,19 +83,19 @@ public class BillsController {
 		}
 	}
 	
-//	@GET
-//	@Path ("/history")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<Bill> getMonthlyBills(){
-//			try {
-//				List<Bill> bills;
-//					bills = billService.findMonthlyBills();
-//					return bills;
-//				}
-//			catch (Exception e) {
-//			throw new WebApplicationException(e);
-//		}
-//	}
+	@GET
+	@Path ("/history")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Bill> getBillHistory(){
+			try {
+					List<Bill> bills;
+					bills = billService.findBillHistory();
+					return bills;
+				}
+			catch (Exception e) {
+			throw new WebApplicationException(e);
+		}
+	}
 
 
 	@POST

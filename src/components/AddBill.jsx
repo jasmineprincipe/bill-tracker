@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMerchantList } from '../util/service-helper'
+import { getBillList } from '../util/service-helper'
 import '../css/bill_form.css';
 import axios from 'axios'
 
@@ -21,9 +22,14 @@ class AddBill extends Component {
     };
 
     componentDidMount() {
+        this.getBills();
         this.getMerchants();
     }
-    
+    getBills() {
+        getBillList().then(res => {
+          this.setState({ billsList: res.data });
+        })
+      }
     getMerchants() {
         getMerchantList().then(res => {
             this.setState({ merchantsList: res.data });
@@ -46,19 +52,21 @@ class AddBill extends Component {
             billDate: this.state.billDate,
             dueDate: this.state.dueDate
         }
+
         // ADD NEW BILL TO DATABASE
         axios.post('http://localhost:8080/billtracker/rest/bills/', bill)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
+                
             })
-        window.location.reload();
+        this.getBills();
     }
     render() {
 
         // POPULATE DROPDOWN WITH EXISTING DATA FROM MERCHANTS LIST
         let merchantOptions = this.state.merchantsList.map((merchant) =>
-            <option key={merchant.merchantName}>{merchant.merchantName}</option>
+            <option>{merchant.merchantName}</option>
         );
         return (
             // DISPLAY BILL FORM
