@@ -83,8 +83,10 @@ class Merchants extends Component {
                       <th className='text-cell'>{merchant.merchantName}</th>
                       <th className='text-cell'>{merchant.merchantDescription}</th>
                       <th className='text-cell'>
-                      <button type='button' className='delete-button'
-                        onClick={() => this.deleteMerchant(merchant.merchantId)}>Delete</button>
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                      <button class="delete-icon">
+                       <i class="fa fa-remove" onClick={() => this.deleteMerchant(merchant.merchantId)}></i>
+                      </button>
                       </th>
                     </tr>
                   )

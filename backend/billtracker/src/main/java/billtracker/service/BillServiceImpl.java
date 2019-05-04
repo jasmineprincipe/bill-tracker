@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import billtracker.dao.BillDao;
 import billtracker.dao.JdbcDaoImpl;
 import billtracker.domain.Bill;
+import billtracker.domain.History;
 
 public class BillServiceImpl implements BillService{
 	
@@ -26,7 +27,7 @@ public class BillServiceImpl implements BillService{
 	}
 	
 	@Override
-	public List<Bill> findBillHistory() {
+	public List<History> findBillHistory() {
 		return billDao.findBillHistory();
 	}
 

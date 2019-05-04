@@ -1,6 +1,7 @@
 import {getMerchantListURL} from './service-url';
 import {getBillListURL} from './service-url';
 import {getCurrentBillListURL} from './service-url';
+import {getHistoryURL} from './service-url';
 import axios from 'axios';
 
 const getMerchantList = () => {
@@ -25,4 +26,12 @@ const getCurrentBillList = () => {
 
 export {
     getCurrentBillList
+}
+
+const getHistory = () => {
+    return axios.get(getHistoryURL);
+}
+
+export {
+    getHistory
 }

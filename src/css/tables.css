@@ -140,3 +140,16 @@ form {
 .date-picker {
   padding-bottom: 200px;
 }
+
+.delete-icon {
+  background-color:rgb(197, 4, 4);
+  border: none;
+  color: white;
+  padding: 3px 4px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.delete-icon:hover {
+  background-color: rgb(161, 0, 0);
+}

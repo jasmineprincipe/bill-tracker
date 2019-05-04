@@ -15,3 +15,10 @@ const getCurrentBillListURL = 'http://localhost:8080/billtracker/rest/bills/curr
 export {
     getCurrentBillListURL
 };
+
+const getHistoryURL = 'http://localhost:8080/billtracker/rest/bills/history';
+
+export {
+    getHistoryURL
+};
+

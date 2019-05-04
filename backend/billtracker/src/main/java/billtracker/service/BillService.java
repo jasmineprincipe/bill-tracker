@@ -3,6 +3,7 @@ package billtracker.service;
 import java.util.List;
 
 import billtracker.domain.Bill;
+import billtracker.domain.History;
 
 public interface BillService {
 
@@ -10,7 +11,7 @@ public interface BillService {
 	
 	public List<Bill> findCurrentBills();
 	
-	public List<Bill> findBillHistory();
+	public List<History> findBillHistory();
 	
 	public Bill findBill(Long billId);
 	

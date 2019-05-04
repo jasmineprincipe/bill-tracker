@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.lang3.StringUtils;
 
 import billtracker.domain.Bill;
+import billtracker.domain.History;
 import billtracker.service.BillService;
 import billtracker.service.BillServiceImpl;
 
@@ -86,11 +87,11 @@ public class BillsController {
 	@GET
 	@Path ("/history")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Bill> getBillHistory(){
+	public List<History> getBillHistory(){
 			try {
-					List<Bill> bills;
-					bills = billService.findBillHistory();
-					return bills;
+					List<History> h;
+					h = billService.findBillHistory();
+					return h;
 				}
 			catch (Exception e) {
 			throw new WebApplicationException(e);

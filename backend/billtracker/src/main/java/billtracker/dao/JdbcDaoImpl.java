@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hsqldb.jdbc.JDBCDataSource;
 
 import billtracker.domain.Bill;
+import billtracker.domain.History;
 import billtracker.domain.Merchant;
 
 public class JdbcDaoImpl implements MerchantDao, BillDao {
@@ -290,11 +291,11 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 
 		
 		@Override
-		public List<Bill> findBillHistory() {
-			List<Bill> bills = new ArrayList<>();
+		public List<History> findBillHistory() {
+			List<History> h = new ArrayList<>();
 			
-			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) Duration,"
-					+ " SUM(amount) TotalAmount "
+			String sql = "SELECT EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) MONTH_DUE,"
+					+ " SUM(amount) TOTAL_AMOUNT "
 					+ " FROM BILLS"
 					+ " GROUP BY EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date))";
 		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))";
@@ -306,8 +307,13 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				int columnsNumber = rsmd.getColumnCount();
 				
 				while (results.next()) {
-							results.getBigDecimal("DURATION");
-							results.getBigDecimal("TOTALAMOUNT");
+					History hs = new History(Long.valueOf
+							(results.getInt("month_due")), 
+							results.getBigDecimal("total_amount"));
+					h.add(hs);
+//				while (results.next()) {
+//						h.add(results.getInt("MONTH_DUE"));
+//						h.add(results.getBigDecimal("TOTAL_AMOUNT"));
 					
 					for (int i = 1; i <= columnsNumber; i++) {
 				           if (i > 1) System.out.print(",  ");
@@ -322,7 +328,7 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 				throw new RuntimeException(e);
 			}
 
-			return bills;
+			return h;
 		}
 
 		

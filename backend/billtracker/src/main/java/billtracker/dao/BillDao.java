@@ -1,6 +1,7 @@
 package billtracker.dao;
 
 import billtracker.domain.Bill;
+import billtracker.domain.History;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface BillDao {
 	
 	public List<Bill> findCurrentBills();
 	
-	public List<Bill> findBillHistory();
+	public List<History> findBillHistory();
 	
 	public Bill findBill(Long billId);
 	
