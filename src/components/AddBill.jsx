@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { getMerchantList } from '../util/service-helper'
-import { getBillList } from '../util/service-helper'
-import '../css/bill_form.css';
 import axios from 'axios'
 
 class AddBill extends Component {
@@ -9,7 +7,6 @@ class AddBill extends Component {
         super(props);
 
         this.state = {
-            billsList: [],
             merchantsList: [],
             bill: {
                 merchantName: '',
@@ -22,14 +19,9 @@ class AddBill extends Component {
     };
 
     componentDidMount() {
-        this.getBills();
         this.getMerchants();
     }
-    getBills() {
-        getBillList().then(res => {
-          this.setState({ billsList: res.data });
-        })
-      }
+
     getMerchants() {
         getMerchantList().then(res => {
             this.setState({ merchantsList: res.data });
@@ -57,10 +49,9 @@ class AddBill extends Component {
         axios.post('http://localhost:8080/billtracker/rest/bills/', bill)
             .then(res => {
                 console.log(res);
-                console.log(res.data);
-                
+                console.log(res.data);   
             })
-        this.getBills();
+        window.location.reload();
     }
     render() {
 
@@ -76,7 +67,9 @@ class AddBill extends Component {
                     <h2>Add Bill</h2>
                     <form className='billform'>
                         <label className="form-label">Merchant</label>
-                            <br /> <select name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> {merchantOptions} </select> <br></br>
+                            <br /> <select name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> 
+                            <option value="">-- Select a merchant</option>
+                            {merchantOptions} </select> <br></br>
                         <label className="form-label">Amount</label>
                             <br /><input type="number" min="1" step="any" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
                         <label className="form-label">Serial Number</label>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/merchant_form.css';
 import { getMerchantList } from '../util/service-helper'
 import axios from 'axios'
 

@@ -28,9 +28,6 @@ class Bills extends Component {
     this.getBills();
     this.getMerchants();
   }
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
 
   // SERVICE METHODS
   getBills() {

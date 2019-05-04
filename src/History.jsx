@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { getHistory } from './util/service-helper'
+import moment from 'moment'
 
 class History extends Component {
 
@@ -40,8 +41,9 @@ class History extends Component {
                 this.state.billHistory.map((h) => {
                   return (
                     <tr className='merchant-table-row'>
-                      <th className='text-cell'>{h.monthDue}</th>
-                      <th className='text-cell'>{h.totalAmount}</th>
+                      <th className='text-cell'>{moment.months(h.monthDue - 1)}</th>
+                      <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', { 
+                          style: 'currency', currency: 'Php' }).format(h.totalAmount)}</th>
                     </tr>
                   )
                 })
