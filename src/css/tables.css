@@ -153,3 +153,7 @@ form {
 .delete-icon:hover {
   background-color: rgb(161, 0, 0);
 }
+
+.history-table{
+  width: 270px;
+}

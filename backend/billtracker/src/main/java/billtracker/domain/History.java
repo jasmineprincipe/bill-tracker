@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class History {
 
+	Long yearDue;
 	Long monthDue;
 	BigDecimal totalAmount;
 	
@@ -11,9 +12,18 @@ public class History {
 		
 	}
 	
-	public History(Long monthDue, BigDecimal totalAmount) {
+	public History(Long yearDue, Long monthDue, BigDecimal totalAmount) {
+		this.yearDue = yearDue;
 		this.monthDue = monthDue;
 		this.totalAmount = totalAmount;
+	}
+	
+	public Long getYearDue() {
+		return yearDue;
+	}
+
+	public void setYearDue(Long yearDue) {
+		this.yearDue = yearDue;
 	}
 
 	public Long getMonthDue() {
