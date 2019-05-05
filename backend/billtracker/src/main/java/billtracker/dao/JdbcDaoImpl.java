@@ -299,8 +299,10 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 					+ " SUM(amount) TOTAL_AMOUNT "
 					+ " FROM BILLS"
 					+ " GROUP BY EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)),"
-					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date))";
-		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))";
+					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date))"
+					+ " ORDER BY EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)) DESC," //DISPLAY MOST RECENT YEAR FIRST
+					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) DESC"; 		//THEN DISPLAY MOST RECENT MONTH
+		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))"; // REMOVE CURRENT MONTH RECORDS FROM HISTORY
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
