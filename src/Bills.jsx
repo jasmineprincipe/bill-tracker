@@ -81,6 +81,7 @@ class Bills extends Component {
         <div className="bill-filter-container">
           <label className="bill-filter-label">Filter by Merchant </label>
             <select  name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> 
+                <option value=""> -- Select a merchant</option>
                 {merchantOptions}
             </select> <br></br>
         </div>

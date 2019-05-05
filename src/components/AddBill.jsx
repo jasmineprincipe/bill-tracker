@@ -71,7 +71,7 @@ class AddBill extends Component {
                             <option value="">-- Select a merchant</option>
                             {merchantOptions} </select> <br></br>
                         <label className="form-label">Amount</label>
-                            <br /><input type="number" min="1" step="any" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
+                            <br /><input type="number" min="0" step=".01" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
                         <label className="form-label">Serial Number</label>
                             <br /><input type="text" name="serialNumber" maxlength="12" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
                         <label className="form-label">Bill Date</label><br />
