@@ -104,3 +104,6 @@ th {
 .history-table{
   width: 270px;
 }
+
+::-webkit-datetime-edit { padding: 1em; }
+::-webkit-inner-spin-button { display: none; }

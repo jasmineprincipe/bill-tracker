@@ -33,11 +33,19 @@ public class BillsController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Bill> getBills() {
-		try {
-			List<Bill> bills;
-			bills = billService.findAllBills();
+	public List<Bill> getBills(
+			@QueryParam("merchantName") String merchantName){
+			try {
+				List<Bill> bills;
+			
+				if(StringUtils.isNotBlank(merchantName)) {
+					bills = billService.findByMerchant(merchantName);
+				} else {
+					bills = billService.findAllBills();
+				}
+		
 			return bills;
+
 		} catch (Exception e) {
 			throw new WebApplicationException(e);
 		}
@@ -56,32 +64,35 @@ public class BillsController {
 			throw new WebApplicationException(e);
 		}
 	}
-
+	
 	@GET
-	@Path("/current")
+	@Path ("/current")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Bill> getCurrentBills() {
-		try {
-			List<Bill> bills;
-			bills = billService.findCurrentBills();
-			return bills;
-		} catch (Exception e) {
+	public List<Bill> getCurrentBills(){
+			try {
+				List<Bill> bills;
+					bills = billService.findCurrentBills();
+					return bills;
+				}
+			catch (Exception e) {
+			throw new WebApplicationException(e);
+		}
+	}
+	
+	@GET
+	@Path ("/history")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<History> getBillHistory(){
+			try {
+					List<History> h;
+					h = billService.findBillHistory();
+					return h;
+				}
+			catch (Exception e) {
 			throw new WebApplicationException(e);
 		}
 	}
 
-	@GET
-	@Path("/history")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<History> getBillHistory() {
-		try {
-			List<History> h;
-			h = billService.findBillHistory();
-			return h;
-		} catch (Exception e) {
-			throw new WebApplicationException(e);
-		}
-	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
