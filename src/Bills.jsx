@@ -13,7 +13,7 @@ class Bills extends Component {
     this.state = {
       billsList: [],
       merchantsList: [],
-      showPopup: false
+      showPopup: false,
     };
   }
 
@@ -80,7 +80,7 @@ class Bills extends Component {
       <div>
         <div className="bill-filter">
             <select  name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> 
-                <option >-- Select merchant</option>
+                <option value=''>-- Select merchant</option>
                 {merchantOptions}
             </select> <br></br>
         </div>

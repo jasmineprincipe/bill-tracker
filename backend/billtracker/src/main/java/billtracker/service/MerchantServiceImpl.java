@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import billtracker.dao.MerchantDao;
-import billtracker.dao.JdbcDaoImpl;
+import billtracker.dao.MerchantJdbcDaoImpl;
 import billtracker.domain.Merchant;
 
 public class MerchantServiceImpl implements MerchantService{
@@ -12,7 +12,7 @@ public class MerchantServiceImpl implements MerchantService{
 	MerchantDao merchantDao;
 
 	public MerchantServiceImpl() {
-		this.merchantDao = JdbcDaoImpl.getInstance();
+		this.merchantDao = MerchantJdbcDaoImpl.getInstance();
 	}
 	
 	@Override

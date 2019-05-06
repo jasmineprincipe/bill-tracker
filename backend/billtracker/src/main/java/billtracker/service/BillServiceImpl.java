@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import billtracker.dao.BillDao;
-import billtracker.dao.JdbcDaoImpl;
+import billtracker.dao.BillJdbcDaoImpl;
 import billtracker.domain.Bill;
 import billtracker.domain.History;
 
@@ -13,7 +13,7 @@ public class BillServiceImpl implements BillService{
 	BillDao billDao;
 
 	public BillServiceImpl() {
-		this.billDao = JdbcDaoImpl.getInstance();
+		this.billDao = BillJdbcDaoImpl.getInstance();
 	}
 	
 	@Override
