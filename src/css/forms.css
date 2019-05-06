@@ -36,6 +36,7 @@ html, body, .app {
     background: #17252A;
     color: #ddd;
     font-size: 14px;
+    border-radius: 2px;
 }
 
 .billform_inner input[type="text"], .billform_inner input[type="number"], .billform_inner input[type="date"], .billform_inner select {
@@ -84,6 +85,11 @@ html, body, .app {
     margin-left: -10px;
 }
 
+.bill-form-label {
+    color: #ddd;
+    margin-left: -10px;
+}
+
 h1 {
     margin: 0;
     padding: 0;
@@ -119,6 +125,7 @@ html, body, .app {
     bottom: 25%;
     margin: auto;
     background: #17252A;
+    border-radius: 2px;
 }
 
 .popup_inner input[type="text"], .popup_inner select {

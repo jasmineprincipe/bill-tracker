@@ -52,9 +52,9 @@ class AddMerchant extends Component {
           <h2>Add Merchant</h2>
           <form>
             <label className="form-label">Merchant</label>
-            <br /><input type="text" name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo} />
+            <br /><input type="text" name="merchantName" maxlength="20" pattern="[A-Za-z]" value={this.merchantName} onChange={this.handleChangeInfo} />
             <label className="form-label">Description</label>
-            <br /><input type="text" name="merchantDescription" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
+            <br /><input type="text" name="merchantDescription" maxlength="20" value={this.merchantDescription} onChange={this.handleChangeInfo} /><br />
             <button type="button" className="form-submit-button" onClick={this.handleAddMerchant}>Submit</button>
           </form>
         </div>
