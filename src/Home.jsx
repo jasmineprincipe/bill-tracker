@@ -20,22 +20,17 @@ class Home extends Component {
     });
   }
 
-  // LIFE CYCLE METHODS
   componentDidMount() {
     this.getCurrentBills();
   }
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
 
-  // SERVICE METHODS
   getCurrentBills() {
     getCurrentBillList().then(res => {
       this.setState({ billsList: res.data });
     })
   }
 
-  // COMPUTE TOTAL AMOUNT DUE FOR THE MONTH
+  // COMPUTE TOTAL AMOUNT DUE FOR THE CURRENT MONTH
   getAmountDue(){
     let amountDue = 0;
     for (let i = 0; i < this.state.billsList.length; i++) {
@@ -50,34 +45,34 @@ class Home extends Component {
         <div className="content-header"><h2>Home</h2>
           <p>The following bills are due this month: </p>
         </div>
-        <div className="amount-container">
+        <div className="amount-container"> 
              <p className="amount-due"> {new Intl.NumberFormat('ph-PH', 
                 { style: 'currency', currency: 'Php' }).format(this.getAmountDue())}</p>
-              <p className="amount-label">{moment().format('MMMM YYYY')}</p>
+              <p className="amount-label">{moment().format('MMMM YYYY')}</p> 
           </div>
-        <div className="page-container">
+        <div>
           <Fragment>
             <table className='home-bill-table'>
               <thead>
               </thead>
               <tbody>
                 <tr className='bill-table-row'>
-                  <th className='bill-table-header'>Merchant</th>
-                  <th className='bill-table-header'>Serial Number</th>
-                  <th className='bill-table-header'>Bill Date</th>
-                  <th className='bill-table-header'>Due Date</th>
-                  <th className='bill-table-header'>Amount</th>
+                  <th className='table-header'>Merchant</th>
+                  <th className='table-header'>Serial Number</th>
+                  <th className='table-header'>Bill Date</th>
+                  <th className='table-header'>Due Date</th>
+                  <th className='table-header'>Amount</th>
                 </tr>
                 {
                   // DISPLAY ADDED BILLS TO TABLE
                   this.state.billsList.map((bill) => {
                     return (
                       <tr className='bill-table-row'>
-                        <th className='text-cell'>{bill.merchantName}</th>     
-                        <th className='text-cell'>{bill.serialNumber}</th>
-                        <th className='date-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
-                        <th className='date-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
-                        <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', 
+                        <th className='table-cell'>{bill.merchantName}</th>     
+                        <th className='table-cell'>{bill.serialNumber}</th>
+                        <th className='table-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
+                        <th className='table-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
+                        <th className='table-cell'>{new Intl.NumberFormat('ph-PH', 
                          { style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
                       </tr>
                     )

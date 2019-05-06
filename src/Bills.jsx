@@ -78,16 +78,15 @@ class Bills extends Component {
 
       // FILTER BILLS BY MERCHANT
       <div>
-        <div className="bill-filter-container">
-          <label className="bill-filter-label">Filter by Merchant </label>
+        <div className="bill-filter">
             <select  name="merchantName" value={this.merchantName} onChange={this.handleChangeInfo}> 
-                <option value=""> -- Select a merchant</option>
+                <option >-- Select merchant</option>
                 {merchantOptions}
             </select> <br></br>
         </div>
       <div className="content-header"><h2>Bills</h2></div>
-      <div className="page-container">
-      <button className="add-bill-button" onClick={this.togglePopup.bind(this)}>Add Bill</button>
+      <div>
+      <button className="add-bill-btn" onClick={this.togglePopup.bind(this)}>+</button>
         {this.state.showPopup ? 
           <AddBill
             text='Close Me'
@@ -101,27 +100,27 @@ class Bills extends Component {
           </thead>
           <tbody>
             <tr className='bill-table-row'>
-              <th className='bill-table-header'>Merchant</th>
-              <th className='bill-table-header'>Amount</th>
-              <th className='bill-table-header'>Serial Number</th>
-              <th className='bill-table-header'>Bill Date</th>
-              <th className='bill-table-header'>Due Date</th>
-              <th className='bill-table-header'></th>
+              <th className='table-header'>Merchant</th>
+              <th className='table-header'>Amount</th>
+              <th className='table-header'>Serial Number</th>
+              <th className='table-header'>Bill Date</th>
+              <th className='table-header'>Due Date</th>
+              <th className='table-header'></th>
             </tr>
             {
               // DISPLAY ADDED BILLS TO TABLE
               this.state.billsList.map((bill) => {
                 return (
                   <tr className='bill-table-row'>
-                    <th className='text-cell'>{bill.merchantName}</th>
-                    <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', { 
+                    <th className='table-cell'>{bill.merchantName}</th>
+                    <th className='table-cell'>{new Intl.NumberFormat('ph-PH', { 
                           style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
-                    <th className='text-cell'>{bill.serialNumber}</th>
-                    <th className='date-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
-                    <th className='date-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
-                    <th className='text-cell'>
+                    <th className='table-cell'>{bill.serialNumber}</th>
+                    <th className='table-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
+                    <th className='table-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
+                    <th className='table-cell'>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                    <button class="delete-icon">
+                    <button class="delete-btn">
                        <i class="fa fa-remove" onClick={() => this.deleteBill(bill.billId)}></i>
                     </button></th>
                   </tr>

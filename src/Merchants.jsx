@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { getMerchantList } from './util/service-helper'
-import { getBillList } from './util/service-helper'
 import AddMerchant from './components/AddMerchant.jsx';
 import axios from 'axios';
 
@@ -10,7 +9,6 @@ class Merchants extends Component {
     super(props);
 
     this.state = {
-      billsList: [],
       merchantsList: [],
       showPopup: false
     };
@@ -26,19 +24,11 @@ class Merchants extends Component {
   componentDidMount() {
     this.getMerchants();
   }
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
 
   // SERVICE METHODS
   getMerchants() {
     getMerchantList().then(res => {
       this.setState({ merchantsList: res.data });
-    })
-  }
-  getBills() {
-    getBillList().then(res => {
-      this.setState({ billsList: res.data });
     })
   }
 
@@ -49,54 +39,52 @@ class Merchants extends Component {
         console.log(res);
         console.log(res.data);
         this.getMerchants();
-      }) 
+      })
   }
 
   render() {
     return (
       <div>
         <div className="content-header"></div>
-          <h2>Merchants</h2>
-        <div className="page-container">
-        <button className="add-merchant-button" onClick={this.togglePopup.bind(this)}>Add Merchant</button>
-        {this.state.showPopup ? 
-          <AddMerchant
-            text='Close Me'
-            closePopup={this.togglePopup.bind(this)}
-          />
-          : null}
-        <Fragment>
-          <table className='merchant-table'>
-            <thead>
-            </thead>
-            <tbody>
-              <tr className='merchant-table-row'>
-                <th className='merchant-table-header'>Merchant</th>
-                <th className='merchant-table-header'>Description</th>
-                <th className='merchant-table-header'></th>
-              </tr>
-              {
-                // DISPLAY ADDED MERCHANTS TO TABLE
-                this.state.merchantsList.map((merchant) => {
-                  return (
-                    <tr className='merchant-table-row'>
-                      <th className='text-cell'>{merchant.merchantName}</th>
-                      <th className='text-cell'>{merchant.merchantDescription}</th>
-                      <th className='text-cell'>
-                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                      <button class="delete-icon">
-                       <i class="fa fa-remove" onClick={() => this.deleteMerchant(merchant.merchantId)}></i>
-                      </button>
-                      </th>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
-        </Fragment>
-        <br />
-        
+        <h2>Merchants</h2>
+        <div>
+          <button className="add-merchant-btn" onClick={this.togglePopup.bind(this)}>+</button>
+          {this.state.showPopup ?
+            <AddMerchant
+              text='Close Me'
+              closePopup={this.togglePopup.bind(this)}
+            />
+            : null}
+          <Fragment>
+            <table className='merchant-table'>
+              <thead>
+              </thead>
+              <tbody>
+                <tr className='merchant-table-row'>
+                  <th className='table-header'>Merchant</th>
+                  <th className='table-header'>Description</th>
+                  <th className='table-header'></th>
+                </tr>
+                {
+                  // DISPLAY ADDED MERCHANTS TO TABLE
+                  this.state.merchantsList.map((merchant) => {
+                    return (
+                      <tr className='merchant-table-row'>
+                        <th className='table-cell'>{merchant.merchantName}</th>
+                        <th className='table-cell'>{merchant.merchantDescription}</th>
+                        <th className='table-cell'>
+                          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                          <button class="delete-btn">
+                            <i class="fa fa-remove" onClick={() => this.deleteMerchant(merchant.merchantId)}></i>
+                          </button>
+                        </th>
+                      </tr>)
+                  })
+                }
+              </tbody>
+            </table>
+          </Fragment>
+          <br />
         </div>
       </div>
     );

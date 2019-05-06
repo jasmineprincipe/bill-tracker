@@ -25,26 +25,26 @@ class History extends Component {
 
   render() {
     return (
-      <div>
+      <div className='main-div'>
         <div className="content-header"><h2>History</h2></div>
-        <div className="page-container">
+        <div>
         <Fragment>
           <table className='history-table'>
             <thead>
             </thead>
             <tbody>
               <tr className='merchant-table-row'>
-                <th className='merchant-table-header'>Year</th>
-                <th className='merchant-table-header'>Month</th>
-                <th className='merchant-table-header'>Total Amount</th>
+                <th className='table-header'>Year</th>
+                <th className='table-header'>Month</th>
+                <th className='table-header'>Total Amount</th>
               </tr>
               {
                 this.state.billHistory.map((h) => {
                   return (
                     <tr className='merchant-table-row'>
-                      <th className='text-cell'>{h.yearDue}</th>
-                      <th className='text-cell'>{moment.months(h.monthDue - 1)}</th>
-                      <th className='amount-cell'>{new Intl.NumberFormat('ph-PH', { 
+                      <th className='table-cell'>{h.yearDue}</th>
+                      <th className='table-cell'>{moment.months(h.monthDue - 1)}</th>
+                      <th className='table-cell'>{new Intl.NumberFormat('ph-PH', { 
                           style: 'currency', currency: 'Php' }).format(h.totalAmount)}</th>
                     </tr>
                   )

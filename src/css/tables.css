@@ -7,125 +7,73 @@ table, td, th {
 table {
   display: table;
   font-size: 14px;
-  width: 900px;
   float: left;
   border-collapse: collapse;
-  background-color: #FEFFFF;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 th {
   padding-left: 20px;
   height: 10px;
-  background-color: #ddd;
+  background-color: #FEFFFF;
   color: #17252A;
 }
 
-.text-cell, .date-cell {
+.table-cell {
   text-align: left;
   font-weight: normal;
 }
 
-.amount-cell {
-  width: 20px;
-  text-align: right;
-  font-weight: normal;
-}
-
-form {
-  width: 200px;
-  float: left;
-  height: 300px;
-  margin-left: 20px;
-}
-
-.page-container {
-  width: 1200px;
-}
-
-.merchant-table-header, .bill-table-header {
-  padding-top: 15px;
+.table-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #3AAFA9;
   font-weight: bold;
+  border: none;
+  color: white;
 }
 
-.bill-filter-container {
+.bill-filter {
   color: #17252A;
   position: fixed;
-  right: 0;
-  padding-right: 225px;
+  padding-left: 450px;
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.bill-filter-label {
-  margin-right: 20px;
-}
-
-.bill-filter-container select {
-  width: 200px;
+.bill-filter select {
+  width: 161px;
   font-size: 16px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   outline: none;
   border: none;
-  border-bottom: 1px solid #ddd;
   background: transparent;
   font: 16px;
   height: 45px;
   margin: -10px;
-  font-weight: bold;
   padding: 0px;
+  font-weight: bold;
   color: #2B7A78;
-}
-
-.delete-button {
-  background: rgb(204, 13, 51);
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  color: #ddd;
-  border-radius: 2px;
-}
-
-.edit-button {
-  background: rgb(0, 158, 26);
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  color: #ddd;
-  border-radius: 2px;
-}
-
-.home-bill-table {
-  width: 600px;
 }
 
 .amount-container {
   position: absolute;
   margin-top: -120px;
-  margin-left: 390px;
+  margin-left: 410px;
   text-align: right;
   color: rgb(146, 146, 146);
   font-weight: bold;
   font-size: 20px;
 }
+
 .amount-due {
   margin-bottom:-21px;
   font-weight: bold;
   font-size: 30px;
   color: #2B7A78;
-}
-
-.merchant-table {
-  width: 500px;
 }
 
 .amount-history-container {
@@ -141,17 +89,16 @@ form {
   padding-bottom: 200px;
 }
 
-.delete-icon {
-  background-color:rgb(197, 4, 4);
-  border: none;
-  color: white;
-  padding: 3px 4px;
-  cursor: pointer;
-  border-radius: 2px;
+.home-bill-table {
+  width: 600px;
 }
 
-.delete-icon:hover {
-  background-color: rgb(161, 0, 0);
+.bill-table {
+  width: 600px;
+}
+
+.merchant-table {
+  width: 400px;
 }
 
 .history-table{

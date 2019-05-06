@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import './css/header.css';
-import './css/body.css';
-import './css/tables.css';
-import './css/merchant_form.css';
-import './css/bill_form.css';
-import './css/App.css';
-import "react-datepicker/dist/react-datepicker.css";
-import Header from './components/header.jsx';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import Home from "./Home";
 import Bills from "./Bills";
 import Merchants from "./Merchants";
 import History from "./History";
+import './css/header.css';
+import './css/body.css';
+import './css/tables.css';
+import './css/forms.css';
+import './css/buttons.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 class App extends Component {
   render() {
     return (
         <div>
-          <Header />
+          <div className="header-div">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"></link>
+            <i class="fas fa-chart-line"></i> BILL<label className="headerlabel">TRACKER</label>
+          </div>
           <div className="my-app-body">
           <HashRouter>
             <div className="sidenav">
