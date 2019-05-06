@@ -2,17 +2,13 @@ package billtracker.dao;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -231,24 +227,35 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			}
 		}
 		
-		
 		private void insertInitBills() {
 
-			BigDecimal dec1 = new BigDecimal("1500.00");
-			BigDecimal dec2 = new BigDecimal("2150.75");
-			BigDecimal dec3 = new BigDecimal("999");
-			BigDecimal dec4 = new BigDecimal("649.50");
+			BigDecimal dec1 = new BigDecimal("1500.00"); BigDecimal dec2 = new BigDecimal("2150.75");
+			BigDecimal dec3 = new BigDecimal("999"); BigDecimal dec4 = new BigDecimal("649.50");
+			BigDecimal dec5 = new BigDecimal("1500.00"); BigDecimal dec6 = new BigDecimal("2150.75");
+			BigDecimal dec7 = new BigDecimal("1299"); BigDecimal dec8 = new BigDecimal("675.50");
+			BigDecimal dec9 = new BigDecimal("1501.63"); BigDecimal dec10 = new BigDecimal("790.45");
 
-//			Date date1 = (Date) new GregorianCalendar(2019, Calendar.MAY, 1).getTime();
-//			Date date2 = (Date) new GregorianCalendar(2019, Calendar.MAY, 30).getTime();
-//			Date date3 = (Date) new GregorianCalendar(2019, Calendar.MAY, 03).getTime();
-//			Date date4 = (Date) new GregorianCalendar(2019, Calendar.MAY, 22).getTime();
-
+			Date d1 = Date.valueOf("2019-05-02"); Date d2 = Date.valueOf("2019-05-21");
+			Date d3 = Date.valueOf("2019-04-15"); Date d4 = Date.valueOf("2019-05-15");
+			Date d5 = Date.valueOf("2018-10-20"); Date d6 = Date.valueOf("2018-11-20");
+			Date d7 = Date.valueOf("2018-05-03"); Date d8 = Date.valueOf("2018-05-30");
+			Date d9 = Date.valueOf("2019-03-06"); Date d10 = Date.valueOf("2019-04-06");
+			Date d11 = Date.valueOf("2019-02-19"); Date d12 = Date.valueOf("2019-03-19");
+			Date d13 = Date.valueOf("2019-02-10"); Date d14 = Date.valueOf("2018-03-10");
+			Date d15 = Date.valueOf("2018-06-01"); Date d16 = Date.valueOf("2018-07-01");
+			Date d17 = Date.valueOf("2019-01-06"); Date d18 = Date.valueOf("2019-02-06");
+			Date d19 = Date.valueOf("2019-03-19"); Date d20 = Date.valueOf("2019-04-19");
 			
-			add(new Bill("Meralco", dec1, "123ABC", null, null));
-			add(new Bill("Maynilad", dec2, "961ATH", null, null));
-			add(new Bill("Meralco", dec3, "430ABC", null, null));
-			add(new Bill("Meralco", dec4, "671ATH", null, null));
+			add(new Bill("Meralco", dec1, "123ABC", d1, d2));
+			add(new Bill("Maynilad", dec2, "961ATH", d3, d4));
+			add(new Bill("Meralco", dec3, "430ABC", d5, d6));
+			add(new Bill("Meralco", dec4, "671ATH", d7, d8));
+			add(new Bill("PLDT", dec5, "397ACC", d9, d10));
+			add(new Bill("Smart", dec6, "298ACX", d11, d12));
+			add(new Bill("Cignal", dec7, "510ABZ", d13, d14));
+			add(new Bill("Globe", dec8, "625ACP", d15, d16));
+			add(new Bill("Meralco", dec9, "147AVB", d17, d18));
+			add(new Bill("PLDT", dec10, "958CQH", d19, d20));
 		}
 
 		@Override
@@ -295,14 +302,13 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			List<History> h = new ArrayList<>();
 			
 			String sql = "SELECT EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)) YEAR_DUE,"
-					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) MONTH_DUE,"
-					+ " SUM(amount) TOTAL_AMOUNT "
+					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) MONTH_DUE,"		//SELECT YEAR AND MONTH FROM DUE DATE
+					+ " SUM(amount) TOTAL_AMOUNT "											//GET TOTAL AMOUNT OF BILLS FROM THE SELECTED YEAR/MONTH
 					+ " FROM BILLS"
 					+ " GROUP BY EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)),"
 					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date))"
 					+ " ORDER BY EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)) DESC," //DISPLAY MOST RECENT YEAR FIRST
 					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) DESC"; 		//THEN DISPLAY MOST RECENT MONTH
-		//			+ " HAVING EXTRACT(MONTH FROM due_date) < (SELECT EXTRACT(MONTH FROM due_date))"; // REMOVE CURRENT MONTH RECORDS FROM HISTORY
 			
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -374,40 +380,6 @@ public class JdbcDaoImpl implements MerchantDao, BillDao {
 			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
 				ps.setString(1, createSearchValue(merchantName));
-
-				ResultSet results = ps.executeQuery();
-
-				while (results.next()) {
-					Bill bill = new Bill(Long.valueOf
-							(results.getInt("bill_id")), 
-							results.getString("merchant_name"),
-							results.getBigDecimal("amount"),
-							results.getString("serial_number"),
-							results.getDate("bill_date"),
-							results.getDate("due_date"));
-					bills.add(bill);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
-
-			return bills;
-		}
-		
-		@Override
-		public List<Bill> findByMonth(String billMonth, String billYear) {
-			List<Bill> bills = new ArrayList<>();
-
-			String sql = "SELECT * FROM BILLS WHERE"
-					+ " EXTRACT(MONTH FROM due_date) = ? AND "
-					+ " EXTRACT(YEAR FROM due_date) = ? ";
-			
-			try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-
-				ps.setString(1, createSearchValue(billMonth));
-				ps.setString(2, createSearchValue(billYear));
 
 				ResultSet results = ps.executeQuery();
 

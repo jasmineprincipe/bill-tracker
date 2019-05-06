@@ -17,8 +17,6 @@ public interface BillService {
 	
 	public List<Bill> findByMerchant(String merchantName);
 	
-	public List<Bill> findByMonth(String billMonth, String billYear);
-	
 	public void add(Bill bill);
 	
 	public void upsert(Bill bill);

@@ -15,7 +15,7 @@ table {
 th {
   padding-left: 20px;
   height: 10px;
-  background-color: #FEFFFF;
+  background-color: rgb(241, 241, 241);
   color: #17252A;
 }
 
@@ -30,12 +30,12 @@ th {
   background-color: #3AAFA9;
   font-weight: bold;
   border: none;
-  color: white;
+  color: rgb(241, 241, 241);
 }
 
 .bill-filter {
   color: #17252A;
-  position: fixed;
+  position: absolute;
   padding-left: 450px;
   margin-top: 10px;
   font-size: 16px;
