@@ -69,13 +69,13 @@ class Merchants extends Component {
                   // DISPLAY ADDED MERCHANTS TO TABLE
                   this.state.merchantsList.map((merchant) => {
                     return (
-                      <tr className='merchant-table-row'>
+                      <tr className='merchant-table-row' key={merchant.merchantId}>
                         <th className='table-cell'>{merchant.merchantName}</th>
                         <th className='table-cell'>{merchant.merchantDescription}</th>
                         <th className='table-cell'>
                           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                          <button class="delete-btn">
-                            <i class="fa fa-remove" onClick={() => this.deleteMerchant(merchant.merchantId)}></i>
+                          <button className="delete-btn">
+                            <i className="fa fa-remove" onClick={() => this.deleteMerchant(merchant.merchantId)}></i>
                           </button>
                         </th>
                       </tr>)

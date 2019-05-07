@@ -67,7 +67,7 @@ class Home extends Component {
                   // DISPLAY ADDED BILLS TO TABLE
                   this.state.billsList.map((bill) => {
                     return (
-                      <tr className='bill-table-row'>
+                      <tr className='bill-table-row' key={bill.billId}>
                         <th className='table-cell'>{bill.merchantName}</th>     
                         <th className='table-cell'>{bill.serialNumber}</th>
                         <th className='table-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>

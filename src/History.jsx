@@ -39,9 +39,9 @@ class History extends Component {
                 <th className='table-header'>Total Amount</th>
               </tr>
               {
-                this.state.billHistory.map((h) => {
+                this.state.billHistory.map((h, index) => {
                   return (
-                    <tr className='merchant-table-row'>
+                    <tr className='merchant-table-row' key={index}>
                       <th className='table-cell'>{h.yearDue}</th>
                       <th className='table-cell'>{moment.months(h.monthDue - 1)}</th>
                       <th className='table-cell'>{new Intl.NumberFormat('ph-PH', { 

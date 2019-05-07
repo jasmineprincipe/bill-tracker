@@ -57,7 +57,7 @@ class AddBill extends Component {
 
         // POPULATE DROPDOWN WITH EXISTING DATA FROM MERCHANTS LIST
         let merchantOptions = this.state.merchantsList.map((merchant) =>
-            <option>{merchant.merchantName}</option>
+            <option key={merchant.merchantName}>{merchant.merchantName}</option>
         );
         return (
             // DISPLAY BILL FORM
@@ -73,7 +73,7 @@ class AddBill extends Component {
                         <label className="bill-form-label">Amount</label>
                             <br /><input type="number" min="0" step=".01" max="999999" name="amount" value={this.amount} onChange={this.handleChangeInfo} /><br />
                         <label className="bill-form-label">Serial Number</label>
-                            <br /><input type="text" name="serialNumber" maxlength="12" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
+                            <br /><input type="text" name="serialNumber" maxLength="12" value={this.serialNumber} onChange={this.handleChangeInfo} /><br />
                         <label className="bill-form-label">Bill Date</label><br />
                             <input type="date" name="billDate" value={this.billDate} onChange={this.handleChangeInfo} /><br />
                         <label className="bill-form-label">Due Date</label><br />

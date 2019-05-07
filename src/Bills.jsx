@@ -109,9 +109,10 @@ class Bills extends Component {
             </tr>
             {
               // DISPLAY ADDED BILLS TO TABLE
-              this.state.billsList.map((bill) => {
+              this.state.billsList.map((bill) =>
+                 {
                 return (
-                  <tr className='bill-table-row'>
+                  <tr className='bill-table-row' key={bill.billId}>
                     <th className='table-cell'>{bill.merchantName}</th>
                     <th className='table-cell'>{new Intl.NumberFormat('ph-PH', { 
                           style: 'currency', currency: 'Php' }).format(bill.amount)}</th>
@@ -120,8 +121,8 @@ class Bills extends Component {
                     <th className='table-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
                     <th className='table-cell'>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                    <button class="delete-btn">
-                       <i class="fa fa-remove" onClick={() => this.deleteBill(bill.billId)}></i>
+                    <button className="delete-btn">
+                       <i className="fa fa-remove" onClick={() => this.deleteBill(bill.billId)}></i>
                     </button></th>
                   </tr>
                 )
