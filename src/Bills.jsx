@@ -23,13 +23,11 @@ class Bills extends Component {
     });
   }
 
-  // LIFE CYCLE METHODS
   componentDidMount() {
     this.getBills();
     this.getMerchants();
   }
 
-  // SERVICE METHODS
   getBills() {
     getBillList().then(res => {
       this.setState({ billsList: res.data });
@@ -120,7 +118,8 @@ class Bills extends Component {
                     <th className='table-cell'>{moment(bill.billDate).format("DD MMM YYYY")}</th>
                     <th className='table-cell'>{moment(bill.dueDate).format("DD MMM YYYY")}</th>
                     <th className='table-cell'>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                    <link rel="stylesheet" 
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                     <button className="delete-btn">
                        <i className="fa fa-remove" onClick={() => this.deleteBill(bill.billId)}></i>
                     </button></th>
