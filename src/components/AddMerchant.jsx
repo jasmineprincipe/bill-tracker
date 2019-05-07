@@ -3,17 +3,6 @@ import { getMerchantList } from '../util/service-helper'
 import axios from 'axios'
 
 class AddMerchant extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      merchantsList: [],
-      merchant: {
-        merchantName: '',
-        merchantDescription: ''
-      }
-    };
-  }
 
   getMerchants() {
     getMerchantList().then(res => {

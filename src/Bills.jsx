@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from "react"
 import { getMerchantList } from './util/service-helper'
 import { getBillList } from './util/service-helper'
-import AddBill from './components/AddBill.jsx';
+import AddBill from './components/AddBill.jsx'
 import axios from 'axios'
 import moment from 'moment'
  
@@ -17,6 +17,7 @@ class Bills extends Component {
     };
   }
 
+  // SHOW MODAL FORM
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup

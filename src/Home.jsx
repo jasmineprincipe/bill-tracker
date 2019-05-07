@@ -9,21 +9,15 @@ class Home extends Component {
 
     this.state = {
       billsList: [],
-      showPopup: false,
       amountDue: ''
     };
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
   }
 
   componentDidMount() {
     this.getCurrentBills();
   }
 
+  // GET CURRENT MONTH BILLS FROM DATABASE
   getCurrentBills() {
     getCurrentBillList().then(res => {
       this.setState({ billsList: res.data });
@@ -64,7 +58,7 @@ class Home extends Component {
                   <th className='table-header'>Amount</th>
                 </tr>
                 {
-                  // DISPLAY ADDED BILLS TO TABLE
+                  // DISPLAY CURRENT BILLS TO TABLE
                   this.state.billsList.map((bill) => {
                     return (
                       <tr className='bill-table-row' key={bill.billId}>

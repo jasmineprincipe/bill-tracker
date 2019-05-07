@@ -8,20 +8,15 @@ class AddBill extends Component {
 
         this.state = {
             merchantsList: [],
-            bill: {
-                merchantName: '',
-                amount: '',
-                serialNumber: '',
-                billDate: '',
-                dueDate: ''
-            }
         };
     };
 
+    // EXECUTED AFTER RENDERING THE COMPONENT TO UPDATE THE STATE
     componentDidMount() {
         this.getMerchants();
     }
 
+    // GET MERCHANTS FROM DATABASE
     getMerchants() {
         getMerchantList().then(res => {
             this.setState({ merchantsList: res.data });

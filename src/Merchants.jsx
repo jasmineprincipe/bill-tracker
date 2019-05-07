@@ -14,18 +14,17 @@ class Merchants extends Component {
     };
   }
 
+  // SHOW MODAL FORM
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup
     });
   }
 
-  // LIFE CYCLE METHODS
   componentDidMount() {
     this.getMerchants();
   }
 
-  // SERVICE METHODS
   getMerchants() {
     getMerchantList().then(res => {
       this.setState({ merchantsList: res.data });

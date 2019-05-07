@@ -8,8 +8,7 @@ class History extends Component {
     super(props);
 
     this.state = {
-      billHistory: [],
-      showPopup: false
+      billHistory: []
     };
   }
 
@@ -17,6 +16,7 @@ class History extends Component {
     this.getBillHistory();
   }
 
+  // GET BILL HISTORY FROM DATABASE
   getBillHistory() {
     getHistory().then(res => {
       this.setState({ billHistory: res.data });
@@ -39,6 +39,7 @@ class History extends Component {
                 <th className='table-header'>Total Amount</th>
               </tr>
               {
+                // DISPLAY BILL HISTORY TO TABLE
                 this.state.billHistory.map((h, index) => {
                   return (
                     <tr className='merchant-table-row' key={index}>
