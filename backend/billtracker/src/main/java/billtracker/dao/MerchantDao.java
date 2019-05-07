@@ -1,6 +1,5 @@
 package billtracker.dao;
 
-import billtracker.domain.Bill;
 import billtracker.domain.Merchant;
 import java.util.List;
 

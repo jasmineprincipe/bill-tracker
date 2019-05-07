@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -105,7 +104,6 @@ public class BillJdbcDaoImpl implements BillDao {
 			return findByMerchant(null);
 		}
 		
-		//FIND BILLS FROM CURRENT MONTH
 		@Override
 		public List<Bill> findCurrentBills() {
 			List<Bill> bills = new ArrayList<>();
@@ -142,7 +140,7 @@ public class BillJdbcDaoImpl implements BillDao {
 		public List<History> findBillHistory() {
 			List<History> h = new ArrayList<>();
 			
-			String sql = "SELECT EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)) YEAR_DUE,"
+			String sql = "SELECT EXTRACT(YEAR FROM DATEADD('YEAR', 0, due_date)) YEAR_DUE," 
 					+ " EXTRACT(MONTH FROM DATEADD('MONTH', 0, due_date)) MONTH_DUE,"		//SELECT YEAR AND MONTH FROM DUE DATE
 					+ " SUM(amount) TOTAL_AMOUNT "											//GET TOTAL AMOUNT OF BILLS FROM THE SELECTED YEAR/MONTH
 					+ " FROM BILLS"
