@@ -9,7 +9,6 @@ import './css/body.css';
 import './css/tables.css';
 import './css/forms.css';
 import './css/buttons.css';
-import "react-datepicker/dist/react-datepicker.css";
 
 class App extends Component {
   render() {
